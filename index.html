@@ -56,7 +56,7 @@
         
         html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
         html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { font-family: 'Cairo', sans-serif; font-weight: 900; }
-        h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
 
         /* Navbar Glass */
         .nav-glass {
@@ -119,6 +119,7 @@
         html[dir="rtl"] .border-l-4 { border-left: 0; border-right: 4px solid; }
         html[dir="rtl"] .border-r { border-right: 0; border-left: 1px solid; }
         html[dir="rtl"] .border-l-8 { border-left: 0; border-right: 8px solid; }
+        html[dir="rtl"] .md\:border-r { border-right: 0; border-left: 1px solid #f3f4f6; }
         
         .gradient-text { background: linear-gradient(to right, #EF4623, #FF6B4A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
@@ -136,32 +137,30 @@
         }
         html[dir="rtl"] .capability-item:hover { transform: translateX(-5px); }
 
-        /* Product Card */
+        /* Product Card - Text Only Variant */
         .product-card {
             position: relative; overflow: hidden; border-radius: 16px;
             background: white; border: 1px solid #E2E8F0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%; display: flex; flex-direction: column; justify-content: space-between;
         }
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
             border-color: #EF4623;
         }
-        .product-img-wrap {
-            height: 280px; overflow: hidden; position: relative;
+        .product-header {
+            padding: 2rem 2rem 1rem;
+            background: linear-gradient(to bottom right, #f8fafc, #fff);
+            border-bottom: 1px solid #f1f5f9;
         }
-        .product-img-wrap img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s;
+        .product-icon {
+            width: 60px; height: 60px;
+            background: #fff; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem; color: #EF4623; font-size: 1.5rem;
         }
-        .product-card:hover .product-img-wrap img { transform: scale(1.1); }
-        .product-badge {
-            position: absolute; top: 20px; left: 20px;
-            background: rgba(239, 70, 35, 0.9); color: white;
-            padding: 6px 12px; font-size: 10px; font-weight: bold;
-            letter-spacing: 1px; text-transform: uppercase; border-radius: 4px;
-        }
-        html[dir="rtl"] .product-badge { left: auto; right: 20px; }
     </style>
 </head>
 <body class="antialiased">
@@ -253,6 +252,22 @@
                 "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. The Kingdom's premier specialist in steam generation and thermal engineering."
             </p>
             
+            <!-- Vision & Mission Badges (New) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
+                    <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
+                        <i class="fa-solid fa-eye"></i> <span data-i18n="visionTitle">OUR VISION</span>
+                    </h4>
+                    <p class="text-sm text-gray-300 leading-relaxed" data-i18n="visionDesc">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
+                    <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
+                        <i class="fa-solid fa-bullseye"></i> <span data-i18n="missionTitle">OUR MISSION</span>
+                    </h4>
+                    <p class="text-sm text-gray-300 leading-relaxed" data-i18n="missionDesc">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
+                </div>
+            </div>
+            
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
                 <a href="#products" class="btn-primary rounded-sm shadow-glow" data-i18n="btnProducts">OUR PRODUCTS</a>
                 <a href="#vendor-codes" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold px-10 py-4 rounded-sm hover:bg-white hover:text-brand-dark transition tracking-widest text-xs" data-i18n="btnVendor">VENDOR CODES</a>
@@ -282,7 +297,7 @@
         </div>
     </section>
 
-    <!-- PRODUCT SHOWCASE (NEW) -->
+    <!-- PRODUCT SHOWCASE (Text & Icon Based - No Images) -->
     <section id="products" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -293,18 +308,20 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Product 1 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="product-img-wrap">
-                        <div class="product-badge">HIGH EFFICIENCY</div>
-                        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Firetube Boiler">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodFireTitle">FIRETUBE BOILERS</h3>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-brand-dark mb-3" data-i18n="prodFireTitle">FIRETUBE BOILERS</h3>
+                    <div class="p-8 pt-4">
                         <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodFireDesc">
                             Robust steam and hot water generation for industrial process applications. Designed for reliability and ease of maintenance.
                         </p>
-                        <ul class="space-y-2 text-xs font-bold text-gray-400 uppercase tracking-wide mb-6">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> 3-Pass Wet Back Design</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> Up to 30 Ton/hr Capacity</li>
+                        <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 3-Pass Wet Back Design</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Up to 30 Ton/hr Capacity</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Low NOx Burners</li>
                         </ul>
                         <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition">REQUEST SPECS</a>
                     </div>
@@ -312,18 +329,20 @@
 
                 <!-- Product 2 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-img-wrap">
-                        <div class="product-badge bg-brand-dark">HIGH PRESSURE</div>
-                        <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Watertube Boiler">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fa-solid fa-water"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodWaterTitle">WATERTUBE BOILERS</h3>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-brand-dark mb-3" data-i18n="prodWaterTitle">WATERTUBE BOILERS</h3>
+                    <div class="p-8 pt-4">
                         <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodWaterDesc">
                             High-capacity, high-pressure solutions for power generation, petrochemical, and large-scale utility applications.
                         </p>
-                        <ul class="space-y-2 text-xs font-bold text-gray-400 uppercase tracking-wide mb-6">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> Superheated Steam</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> Rapid Response</li>
+                        <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Superheated Steam</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Rapid Response Time</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Custom Configurable</li>
                         </ul>
                         <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition">REQUEST SPECS</a>
                     </div>
@@ -331,18 +350,20 @@
 
                 <!-- Product 3 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="product-img-wrap">
-                        <div class="product-badge bg-green-600">ZERO EMISSION</div>
-                        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Electric Boiler">
+                    <div class="product-header">
+                        <div class="product-icon">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodElecTitle">ELECTRIC BOILERS</h3>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-brand-dark mb-3" data-i18n="prodElecTitle">ELECTRIC BOILERS</h3>
+                    <div class="p-8 pt-4">
                         <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodElecDesc">
                             Compact, clean, and efficient steam generation for specialized environments requiring zero footprint emissions.
                         </p>
-                        <ul class="space-y-2 text-xs font-bold text-gray-400 uppercase tracking-wide mb-6">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> 99% Efficiency</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-red"></i> No Flue Stack Required</li>
+                        <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 99% Thermal Efficiency</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> No Flue Stack Required</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Silent Operation</li>
                         </ul>
                         <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition">REQUEST SPECS</a>
                     </div>
@@ -383,9 +404,12 @@
 
                 <div class="relative" data-aos="fade-left">
                     <div class="absolute -inset-4 bg-brand-red/20 blur-xl rounded-full"></div>
-                    <div class="bg-brand-charcoal border border-gray-700 rounded-xl p-2 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rental Fleet" class="rounded-lg w-full grayscale hover:grayscale-0 transition duration-700">
-                        <div class="absolute bottom-6 left-6 bg-brand-red text-white px-4 py-2 text-xs font-bold rounded shadow-lg">SKID MOUNTED PACKAGE</div>
+                    <div class="bg-brand-charcoal border border-gray-700 rounded-xl p-10 relative overflow-hidden flex items-center justify-center text-center">
+                        <div>
+                            <i class="fa-solid fa-truck-fast text-6xl text-brand-red mb-6"></i>
+                            <h4 class="text-2xl font-bold text-white mb-2">24/7 MOBILIZATION</h4>
+                            <p class="text-sm text-gray-400">Rapid deployment to any site in the Kingdom.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -642,6 +666,9 @@
                 contactAddr: "Abdullah St. & Prince Humood St., Al Khobar, KSA",
                 footerRights: "&copy; 2025 All Rights Reserved.",
                 statExp: "Years Experience", statLocal: "Saudi Owned", statSupport: "Emergency Support", statCode: "Code Compliant",
+                // Vision Mission
+                visionTitle: "OUR VISION", visionDesc: "To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.",
+                missionTitle: "OUR MISSION", missionDesc: "Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.",
                 // Rental to Products
                 navRental: "RENTAL",
                 sectionProductsSub: "ADVANCED SOLUTIONS", sectionProducts: "INDUSTRIAL BOILER SYSTEMS",
@@ -680,6 +707,9 @@
                 contactAddr: "شارع عبد الله وشارع الأمير حمود، الخبر، السعودية",
                 footerRights: "&copy; ٢٠٢٥ جميع الحقوق محفوظة.",
                 statExp: "سنوات الخبرة", statLocal: "ملكية سعودية", statSupport: "دعم الطوارئ", statCode: "مطابقة للكود",
+                // Vision Mission
+                visionTitle: "رؤيتنا", visionDesc: "الابتكار والريادة في حلول الطاقة عبر الشرق الأوسط، وضمان الاستدامة والكفاءة والموثوقية لجميع العملاء.",
+                missionTitle: "مهمتنا", missionDesc: "تقديم حلول مثلى من خلال الجمع بين الخبرة الصناعية المتفوقة والموارد الخبيرة لتحويل متطلبات الطاقة في المنطقة.",
                 // Rental to Products
                 navRental: "التأجير",
                 sectionProductsSub: "حلول متقدمة", sectionProducts: "أنظمة المراجل الصناعية",
