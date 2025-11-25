@@ -22,8 +22,8 @@
                     },
                     colors: {
                         brand: {
-                            red: '#EF4623',
-                            dark: '#0B0F19',
+                            red: '#EF4623', // Pomegranate
+                            dark: '#0B0F19', // Deep Black/Navy
                             navy: '#161F30',
                             light: '#F8FAFC',
                             gray: '#E2E8F0',
@@ -94,7 +94,7 @@
             background-color: #EF4623; color: white; font-weight: 700; letter-spacing: 0.05em;
             padding: 14px 36px; border-radius: 4px; transition: all 0.3s;
             box-shadow: 0 10px 20px -10px rgba(239, 70, 35, 0.5);
-            position: relative; overflow: hidden;
+            position: relative; overflow: hidden; border: 1px solid #EF4623;
         }
         .btn-primary::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
@@ -104,16 +104,13 @@
         .btn-primary:hover::after { left: 100%; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -10px rgba(239, 70, 35, 0.6); }
 
-        /* Toggle Switch */
-        .toggle-btn { position: relative; overflow: hidden; transition: all 0.3s ease; }
-        .toggle-btn.active { background-color: #EF4623; border-color: #EF4623; box-shadow: 0 0 15px rgba(239, 70, 35, 0.4); }
-        
-        /* Glass Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1); color: white; font-weight: 700; letter-spacing: 0.05em;
+            padding: 14px 36px; border-radius: 4px; transition: all 0.3s;
+            backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);
         }
-        
+        .btn-secondary:hover { background-color: white; color: #0B0F19; transform: translateY(-2px); }
+
         /* RTL Adjustments */
         html[dir="rtl"] .text-left { text-align: right; }
         html[dir="rtl"] .border-l-4 { border-left: 0; border-right: 4px solid; }
@@ -137,7 +134,7 @@
         }
         html[dir="rtl"] .capability-item:hover { transform: translateX(-5px); }
 
-        /* Product Card - Text Only Variant */
+        /* Product Card */
         .product-card {
             position: relative; overflow: hidden; border-radius: 16px;
             background: white; border: 1px solid #E2E8F0;
@@ -193,8 +190,8 @@
                     <span data-i18n="navServices">SERVICES</span>
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#rental" class="hover:text-brand-red transition relative group">
-                    <span data-i18n="navRental">RENTAL</span>
+                <a href="#team" class="hover:text-brand-red transition relative group">
+                    <span data-i18n="navTeam">TEAM</span>
                     <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
                 </a>
                 <a href="#projects" class="hover:text-brand-red transition relative group">
@@ -219,7 +216,7 @@
             <a href="#home" class="block font-bold text-brand-dark" data-i18n="navOverview">HOME</a>
             <a href="#products" class="block font-bold text-brand-dark" data-i18n="navProducts">PRODUCTS</a>
             <a href="#services" class="block font-bold text-brand-dark" data-i18n="navServices">SERVICES</a>
-            <a href="#rental" class="block font-bold text-brand-dark" data-i18n="navRental">RENTAL</a>
+            <a href="#team" class="block font-bold text-brand-dark" data-i18n="navTeam">TEAM</a>
             <a href="#projects" class="block font-bold text-brand-dark" data-i18n="navProjects">PROJECTS</a>
             <a href="#contact" class="block font-bold text-brand-red" data-i18n="btnContact">CONTACT</a>
             <button id="langToggleMobile" class="block w-full text-left font-bold text-gray-500 mt-4 pt-4 border-t">SWITCH LANGUAGE</button>
@@ -252,7 +249,7 @@
                 "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. The Kingdom's premier specialist in steam generation and thermal engineering."
             </p>
             
-            <!-- Vision & Mission Badges (New) -->
+            <!-- Vision & Mission Badges -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
                 <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
                     <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
@@ -270,7 +267,7 @@
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
                 <a href="#products" class="btn-primary rounded-sm shadow-glow" data-i18n="btnProducts">OUR PRODUCTS</a>
-                <a href="#vendor-codes" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold px-10 py-4 rounded-sm hover:bg-white hover:text-brand-dark transition tracking-widest text-xs" data-i18n="btnVendor">VENDOR CODES</a>
+                <a href="#vendor-codes" class="btn-secondary rounded-sm hover:bg-white hover:text-brand-dark transition tracking-widest text-xs" data-i18n="btnVendor">VENDOR CODES</a>
             </div>
         </div>
 
@@ -297,7 +294,7 @@
         </div>
     </section>
 
-    <!-- PRODUCT SHOWCASE (Text & Icon Based - No Images) -->
+    <!-- PRODUCT SHOWCASE -->
     <section id="products" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -314,16 +311,18 @@
                         </div>
                         <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodFireTitle">FIRETUBE BOILERS</h3>
                     </div>
-                    <div class="p-8 pt-4">
-                        <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodFireDesc">
-                            Robust steam and hot water generation for industrial process applications. Designed for reliability and ease of maintenance.
-                        </p>
-                        <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 3-Pass Wet Back Design</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Up to 30 Ton/hr Capacity</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Low NOx Burners</li>
-                        </ul>
-                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition">REQUEST SPECS</a>
+                    <div class="p-8 pt-4 flex-grow flex flex-col justify-between">
+                        <div>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodFireDesc">
+                                Robust steam and hot water generation for industrial process applications. Designed for reliability and ease of maintenance.
+                            </p>
+                            <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 3-Pass Wet Back Design</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Up to 30 Ton/hr Capacity</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Low NOx Burners</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition w-max">REQUEST SPECS</a>
                     </div>
                 </div>
 
@@ -335,16 +334,18 @@
                         </div>
                         <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodWaterTitle">WATERTUBE BOILERS</h3>
                     </div>
-                    <div class="p-8 pt-4">
-                        <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodWaterDesc">
-                            High-capacity, high-pressure solutions for power generation, petrochemical, and large-scale utility applications.
-                        </p>
-                        <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Superheated Steam</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Rapid Response Time</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Custom Configurable</li>
-                        </ul>
-                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition">REQUEST SPECS</a>
+                    <div class="p-8 pt-4 flex-grow flex flex-col justify-between">
+                         <div>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodWaterDesc">
+                                High-capacity, high-pressure solutions for power generation, petrochemical, and large-scale utility applications.
+                            </p>
+                            <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Superheated Steam</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Rapid Response Time</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Custom Configurable</li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition w-max">REQUEST SPECS</a>
                     </div>
                 </div>
 
@@ -356,60 +357,18 @@
                         </div>
                         <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodElecTitle">ELECTRIC BOILERS</h3>
                     </div>
-                    <div class="p-8 pt-4">
-                        <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodElecDesc">
-                            Compact, clean, and efficient steam generation for specialized environments requiring zero footprint emissions.
-                        </p>
-                        <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 99% Thermal Efficiency</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> No Flue Stack Required</li>
-                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Silent Operation</li>
-                        </ul>
-                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition">REQUEST SPECS</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- STRATEGIC RENTAL FLEET (REPLACES CALCULATOR) -->
-    <section id="rental" class="py-24 bg-brand-dark text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div data-aos="fade-right">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-                        <span class="text-green-500 font-mono text-xs font-bold tracking-widest" data-i18n="fleetStatus">FLEET READY FOR DEPLOYMENT</span>
-                    </div>
-                    <h2 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-i18n="rentTitle">STRATEGIC RENTAL<br><span class="text-brand-red">SOLUTIONS</span></h2>
-                    <p class="text-gray-400 text-lg leading-relaxed mb-10" data-i18n="rentDesc">
-                        We maintain the Middle East's largest inventory of mobile steam boilers. Skid-mounted and containerized units ready to mobilize within 24 hours for planned maintenance or emergency shutdowns.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-8 mb-10">
+                    <div class="p-8 pt-4 flex-grow flex flex-col justify-between">
                         <div>
-                            <h4 class="text-3xl font-bold text-white">1-50 T/h</h4>
-                            <p class="text-xs text-gray-500 uppercase tracking-widest">Single Unit Capacity</p>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodElecDesc">
+                                Compact, clean, and efficient steam generation for specialized environments requiring zero footprint emissions.
+                            </p>
+                            <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 99% Thermal Efficiency</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> No Flue Stack Required</li>
+                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Silent Operation</li>
+                            </ul>
                         </div>
-                        <div>
-                            <h4 class="text-3xl font-bold text-white">60+ Bar</h4>
-                            <p class="text-xs text-gray-500 uppercase tracking-widest">High Pressure Availability</p>
-                        </div>
-                    </div>
-
-                    <a href="#contact" class="btn-primary rounded-sm" data-i18n="btnBook">BOOK A UNIT</a>
-                </div>
-
-                <div class="relative" data-aos="fade-left">
-                    <div class="absolute -inset-4 bg-brand-red/20 blur-xl rounded-full"></div>
-                    <div class="bg-brand-charcoal border border-gray-700 rounded-xl p-10 relative overflow-hidden flex items-center justify-center text-center">
-                        <div>
-                            <i class="fa-solid fa-truck-fast text-6xl text-brand-red mb-6"></i>
-                            <h4 class="text-2xl font-bold text-white mb-2">24/7 MOBILIZATION</h4>
-                            <p class="text-sm text-gray-400">Rapid deployment to any site in the Kingdom.</p>
-                        </div>
+                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition w-max">REQUEST SPECS</a>
                     </div>
                 </div>
             </div>
@@ -429,7 +388,7 @@
         </div>
     </section>
 
-    <!-- Team Section (Deep Details) -->
+    <!-- Team Section (Deep Details & Objectives) -->
     <section id="team" class="py-24 bg-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
@@ -678,7 +637,14 @@
                 // Strategic Rental
                 fleetStatus: "FLEET READY FOR DEPLOYMENT", rentTitle: "STRATEGIC RENTAL<br><span class='text-brand-red'>SOLUTIONS</span>", 
                 rentDesc: "We maintain the Middle East's largest inventory of mobile steam boilers. Skid-mounted and containerized units ready to mobilize within 24 hours for planned maintenance or emergency shutdowns.",
-                btnBook: "BOOK A UNIT"
+                btnBook: "BOOK A UNIT",
+                sectionTeam: "UNMATCHED EXPERTISE", navTeam: "OUR TEAM",
+                teamDesc1: "Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.",
+                teamDesc2: "Proven expertise in thermal design of heat transfer equipment including utility, industrial and packaged boilers, air-cooled, shell & tube, plate & frame, brazed aluminum type heat exchangers, and process fired heaters.",
+                teamEngTitle: "LICENSED ENGINEERING DEPARTMENT",
+                teamEngDesc: "Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels to ASME standards.",
+                teamObjectives: "CORE OBJECTIVES",
+                sectionCapabilities: "TECHNICAL STRENGTH", navCapabilities: "CAPABILITIES"
             },
             ar: {
                 brandName: "المراجل السعودية", brandNameHTML: "المراجل<br><span class='text-brand-red'>السعودية</span>", maintenanceCo: "شركة الصيانة",
@@ -719,7 +685,14 @@
                 // Strategic Rental
                 fleetStatus: "الأسطول جاهز للنشر", rentTitle: "حلول التأجير<br><span class='text-brand-red'>الاستراتيجية</span>",
                 rentDesc: "نحافظ على أكبر مخزون من المراجل البخارية المتنقلة في الشرق الأوسط. وحدات مثبتة على قواعد وحاويات جاهزة للتعبئة خلال 24 ساعة.",
-                btnBook: "احجز وحدة"
+                btnBook: "احجز وحدة",
+                sectionTeam: "خبرات لا تضاهى", navTeam: "فريقنا",
+                teamDesc1: "فريق المراجل السعودية فريد من نوعه بين مقدمي الخدمات الهندسية والصناعية. الفريق هو الوحيد في الشرق الأوسط المتخصص فقط في خدمات هندسة معدات العمليات.",
+                teamDesc2: "خبرة مثبتة في التصميم الحراري لمعدات نقل الحرارة بما في ذلك مراجل المرافق والمراجل الصناعية، المبادلات الحرارية المبردة بالهواء، الأنبوبية، والألواح، وسخانات العمليات.",
+                teamEngTitle: "قسم الهندسة الداخلي",
+                teamEngDesc: "يتمتع قسم الهندسة لدينا بأكثر من ٣٠ عامًا من الخبرة في تصميم وهندسة عكسية وتقييم العديد من أنواع الغلايات وأنظمة محطات الطاقة البخارية والمياه الساخنة وأنابيب الوقود وفقًا لمعايير ASME.",
+                teamObjectives: "الأهداف الرئيسية",
+                sectionCapabilities: "القوة التقنية", navCapabilities: "القدرات"
             }
         };
 
@@ -764,6 +737,14 @@
             { en: "Energy Optimization & Performance", ar: "تحسين الطاقة والأداء" }
         ];
 
+        const objectives = [
+            { en: "Protect operations and maintenance investments", ar: "حماية استثمارات التشغيل والصيانة" },
+            { en: "Ensure contractors and suppliers meet their commitments", ar: "ضمان وفاء المقاولين والموردين بالتزاماتهم" },
+            { en: "Spread Engineering Concept in Industrial community in KSA", ar: "نشر المفهوم الهندسي في المجتمع الصناعي في المملكة" },
+            { en: "Improve regional market competitiveness of Saudi Arabian Engineering Disciplines", ar: "تحسين التنافسية الإقليمية للتخصصات الهندسية السعودية" },
+            { en: "Enhance local engineers' competencies", ar: "تعزيز كفاءات المهندسين المحليين" }
+        ];
+
         const clients = [
             {en: "SAUDI ARAMCO", ar: "أرامكو السعودية"},
             {en: "SABIC", ar: "سابك"},
@@ -789,6 +770,14 @@
                     </div>
                     <p class="text-3xl font-header font-bold text-brand-dark font-mono">${v.code}</p>
                 </div>
+            `).join('');
+
+            // Objectives
+            document.getElementById('objectives-list').innerHTML = objectives.map(o => `
+                <li class="flex items-start gap-4">
+                    <div class="mt-1 min-w-[20px] text-brand-red"><i class="fa-solid fa-check"></i></div>
+                    <span class="text-gray-300 text-sm">${lang === 'en' ? o.en : o.ar}</span>
+                </li>
             `).join('');
 
             // Projects
