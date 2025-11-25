@@ -9,7 +9,7 @@
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Manrope:wght@300;400;500;700;800&family=Cairo:wght@300;400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&family=Manrope:wght@300;400;500;700;800&family=Cairo:wght@300;400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -51,7 +51,7 @@
         body { font-family: 'Manrope', sans-serif; overflow-x: hidden; cursor: default; background-color: #FFFFFF; color: #1e293b; }
         
         html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
-        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3 { font-family: 'Cairo', sans-serif; font-weight: 900; }
+        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { font-family: 'Cairo', sans-serif; font-weight: 900; }
         h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
 
         /* Navbar Glass */
@@ -91,6 +91,18 @@
         html[dir="rtl"] .text-left { text-align: right; }
         html[dir="rtl"] .border-l-4 { border-left: 0; border-right: 4px solid; }
         html[dir="rtl"] .md\:border-r { border-right: 0; border-left: 1px solid #f3f4f6; }
+        
+        /* Specialized Service Card */
+        .spec-card {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .spec-card:hover {
+            background: #fff;
+            border-color: #EF4623;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -110,6 +122,7 @@
             <div class="hidden lg:flex items-center gap-8 text-sm font-bold text-brand-dark tracking-wide">
                 <a href="#home" class="hover:text-brand-red transition" data-i18n="navOverview">HOME</a>
                 <a href="#services" class="hover:text-brand-red transition" data-i18n="navServices">SERVICES</a>
+                <a href="#specialized" class="hover:text-brand-red transition" data-i18n="navSpecialized">SPECIALIZED</a>
                 <a href="#projects" class="hover:text-brand-red transition" data-i18n="navProjects">PROJECTS</a>
                 <a href="#contact" class="btn-primary text-white px-6 py-2 rounded-full" data-i18n="btnContact">CONTACT</a>
                 
@@ -128,6 +141,7 @@
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 p-6 space-y-4 shadow-xl">
             <a href="#home" class="block font-bold text-brand-dark" data-i18n="navOverview">HOME</a>
             <a href="#services" class="block font-bold text-brand-dark" data-i18n="navServices">SERVICES</a>
+            <a href="#specialized" class="block font-bold text-brand-dark" data-i18n="navSpecialized">SPECIALIZED</a>
             <a href="#projects" class="block font-bold text-brand-dark" data-i18n="navProjects">PROJECTS</a>
             <a href="#contact" class="block font-bold text-brand-red" data-i18n="btnContact">CONTACT</a>
             <button id="langToggleMobile" class="block w-full text-left font-bold text-gray-500 mt-4 pt-4 border-t">SWITCH LANGUAGE</button>
@@ -187,15 +201,18 @@
         </div>
     </section>
 
-    <!-- Services (Interactive Cards) -->
+    <!-- Engineering & Industrial Services (Full Content from PDF Page 5) -->
     <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
                 <div data-aos="fade-right">
                     <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="sectionServices">Our Expertise</span>
                     <h2 class="text-5xl font-bold text-brand-dark mt-2 mb-6" data-i18n="servicesMainTitle">ENGINEERING &<br>INDUSTRIAL SERVICES</h2>
-                    <p class="text-gray-500 leading-relaxed text-lg" data-i18n="servicesIntro">
-                        Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels.
+                    <p class="text-gray-500 leading-relaxed text-lg mb-6" data-i18n="servicesIntro">
+                        Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels. We offer services from boiler surveys, inspections, repairs, and revamp, as well as the design, supply, installation, and commissioning of complete boiler systems.
+                    </p>
+                    <p class="text-gray-500 leading-relaxed text-sm" data-i18n="servicesDetail">
+                        Boilers and auxiliaries are designed, manufactured, installed, and maintained to national and international standards such as ASME BPVC Section I, VIII, VI, BS, European and others. Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels.
                     </p>
                 </div>
                 <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
@@ -219,6 +236,43 @@
                         <h4 class="text-lg font-bold mb-2" data-i18n="cardAnalysisTitle">ANALYSIS</h4>
                         <p class="text-xs opacity-70 group-hover:opacity-100" data-i18n="cardAnalysisDesc">Root cause failure analysis and efficiency studies.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialized Services (Full Content from PDF Page 9) -->
+    <section id="specialized" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="navSpecialized">SPECIALIZED SERVICES</span>
+                <h2 class="text-4xl font-bold text-brand-dark mt-2" data-i18n="sectionSpecialized">ADVANCED TECHNICAL SOLUTIONS</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specRcaTitle">Root Cause Analysis</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specRcaDesc">Using influence diagram analysis to decide and determine relative contribution of various root cause influences in operating boilers to prevent recurrence.</p>
+                </div>
+                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specInspTitle">Expert Inspection</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specInspDesc">Proper inspection techniques for all types of boiler components to ensure accurate diagnostics of any failure mode for proper remedies and rehabilitation.</p>
+                </div>
+                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specCircTitle">Circulation Analysis</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specCircDesc">The only team in KSA assessing internal circulation to solve tube overheating. Mitigates reoccurrence of furnace tube failures.</p>
+                </div>
+                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specShutdownTitle">Shutdown Management</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specShutdownDesc">Detailed service programs for pressure, auxiliary, and control components to prolong boiler operational life with all safety measures.</p>
+                </div>
+                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="500">
+                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specFuelTitle">Fuel Switch Studies</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specFuelDesc">Technical and feasibility studies for switching fuels to meet environmental and economic constraints (e.g., Liquid to Gas).</p>
+                </div>
+                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="600">
+                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specFlueTitle">Flue Gas Analysis</h4>
+                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specFlueDesc">On-site exhaust gas emission measurements using calibrated, standard, and certified equipment whenever needed.</p>
                 </div>
             </div>
         </div>
@@ -292,17 +346,26 @@
         const data = {
             en: {
                 brandName: "SAUDI BOILERS", brandNameHTML: "SAUDI<br><span class='text-brand-red'>BOILERS</span>", maintenanceCo: "MAINTENANCE CO.",
-                navOverview: "HOME", navServices: "SERVICES", navCapabilities: "CAPABILITIES", navProjects: "TRACK RECORD", navClients: "CLIENTS", btnContact: "CONTACT",
+                navOverview: "HOME", navServices: "SERVICES", navCapabilities: "CAPABILITIES", navProjects: "TRACK RECORD", navClients: "CLIENTS", btnContact: "CONTACT", navSpecialized: "SPECIALIZED",
                 profileYear: "YEAR 2025 PROFILE",
                 heroTitle: "OPTIMIZED SOLUTIONS<br>FOR INDUSTRIAL BOILERS",
                 heroDesc: "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disasters, shut-down, testing, or planned downtime.",
                 btnVendor: "VENDOR CODES",
                 preQual: "TRUSTED PARTNERS", sectionVendor: "OFFICIAL VENDOR CODES",
-                sectionServices: "OUR EXPERTISE", servicesMainTitle: "ENGINEERING &<br>INDUSTRIAL SERVICES", servicesIntro: "Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels.",
+                sectionServices: "OUR EXPERTISE", servicesMainTitle: "ENGINEERING &<br>INDUSTRIAL SERVICES", 
+                servicesIntro: "Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels. We offer services from boiler surveys, inspections, repairs, and revamp, as well as the design, supply, installation, and commissioning of complete boiler systems.",
+                servicesDetail: "Boilers and auxiliaries are designed, manufactured, installed, and maintained to national and international standards such as ASME BPVC Section I, VIII, VI, BS, European and others. Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam/hot water power plant systems, fuel piping, and pressure vessels.",
                 cardDesignTitle: "DESIGN", cardDesignDesc: "ASME compliant engineering and reverse engineering.",
                 cardFabTitle: "FABRICATION", cardFabDesc: "Pressure vessels, tanks, and skid mounted systems.",
                 cardMaintTitle: "MAINTENANCE", cardMaintDesc: "Annual contracts, repairs, and emergency support.",
                 cardAnalysisTitle: "ANALYSIS", cardAnalysisDesc: "Root cause failure analysis and efficiency studies.",
+                sectionSpecialized: "ADVANCED TECHNICAL SOLUTIONS",
+                specRcaTitle: "Root Cause Analysis", specRcaDesc: "Using influence diagram analysis to decide and determine relative contribution of various root cause influences in operating boilers to prevent recurrence.",
+                specInspTitle: "Expert Inspection", specInspDesc: "Proper inspection techniques for all types of boiler components to ensure accurate diagnostics of any failure mode for proper remedies and rehabilitation.",
+                specCircTitle: "Circulation Analysis", specCircDesc: "The only team in KSA assessing internal circulation to solve tube overheating. Mitigates reoccurrence of furnace tube failures.",
+                specShutdownTitle: "Shutdown Management", specShutdownDesc: "Detailed service programs for pressure, auxiliary, and control components to prolong boiler operational life with all safety measures.",
+                specFuelTitle: "Fuel Switch Studies", specFuelDesc: "Technical and feasibility studies for switching fuels to meet environmental and economic constraints (e.g., Liquid to Gas).",
+                specFlueTitle: "Flue Gas Analysis", specFlueDesc: "On-site exhaust gas emission measurements using calibrated, standard, and certified equipment whenever needed.",
                 sectionClients: "OUR VALUED CLIENTS", sectionProjects: "RECENT PROJECTS",
                 sectionConnect: "CONNECT",
                 contactAddr: "Abdullah St. & Prince Humood St., Al Khobar, KSA",
@@ -311,17 +374,26 @@
             },
             ar: {
                 brandName: "المراجل السعودية", brandNameHTML: "المراجل<br><span class='text-brand-red'>السعودية</span>", maintenanceCo: "شركة الصيانة",
-                navOverview: "الرئيسية", navServices: "الخدمات", navCapabilities: "القدرات", navProjects: "المشاريع", navClients: "العملاء", btnContact: "اتصل بنا",
+                navOverview: "الرئيسية", navServices: "الخدمات", navCapabilities: "القدرات", navProjects: "المشاريع", navClients: "العملاء", navSpecialized: "متخصصة", btnContact: "اتصل بنا",
                 profileYear: "ملف الشركة ٢٠٢٥",
                 heroTitle: "حلول هندسية متكاملة<br>للمراجل الصناعية",
                 heroDesc: "أينما ومتى احتجت إلى مرجل بخاري، يمكن للمراجل السعودية التوصيل بسرعة. سواء كان لدى العميل حالة طوارئ، كوارث، توقف عن العمل، أو صيانة.",
                 btnVendor: "أكواد الموردين",
                 preQual: "شركاء موثوقون", sectionVendor: "أكواد التسجيل المعتمدة",
-                sectionServices: "خبراتنا", servicesMainTitle: "الخدمات الهندسية<br>والصناعية", servicesIntro: "تقدم المراجل السعودية لعملاء القطاع الصناعي حلولاً فريدة ومثلى للحفاظ على مستويات الأداء العالي والجودة والسلامة.",
+                sectionServices: "خبراتنا", servicesMainTitle: "الخدمات الهندسية<br>والصناعية", 
+                servicesIntro: "تقدم المراجل السعودية لعملاء القطاع الصناعي حلولاً فريدة ومثلى للحفاظ على مستويات الأداء العالي والجودة والسلامة للمعدات.",
+                servicesDetail: "يتم تصميم وتصنيع وتركيب وصيانة المراجل وملحقاتها وفقًا للمعايير الوطنية والدولية. يتمتع قسم الهندسة لدينا بأكثر من 30 عامًا من الخبرة في التصميم والهندسة العكسية.",
                 cardDesignTitle: "التصميم", cardDesignDesc: "هندسة متوافقة مع ASME والهندسة العكسية.",
                 cardFabTitle: "التصنيع", cardFabDesc: "أوعية الضغط، الخزانات، والأنظمة المثبتة على قواعد.",
                 cardMaintTitle: "الصيانة", cardMaintDesc: "عقود سنوية، إصلاحات، ودعم طوارئ.",
                 cardAnalysisTitle: "التحليل", cardAnalysisDesc: "تحليل السبب الجذري للأعطال ودراسات الكفاءة.",
+                sectionSpecialized: "الحلول التقنية المتقدمة",
+                specRcaTitle: "تحليل السبب الجذري", specRcaDesc: "استخدام تحليل مخطط التأثير لتحديد أسباب الأعطال ومنع تكرارها في المراجل العاملة.",
+                specInspTitle: "التفتيش المتخصص", specInspDesc: "تقنيات تفتيش دقيقة لجميع المكونات لضمان التشخيص الصحيح والعلاجات المناسبة.",
+                specCircTitle: "تحليل الدوران", specCircDesc: "الفريق الوحيد في المملكة لتقييم الدوران الداخلي وحل مشاكل ارتفاع حرارة الأنابيب.",
+                specShutdownTitle: "إدارة التوقف", specShutdownDesc: "برامج خدمة مفصلة لمكونات الضغط والتحكم لإطالة عمر المرجل التشغيلي بأمان.",
+                specFuelTitle: "تحويل الوقود", specFuelDesc: "دراسات فنية وجدوى لتحويل الوقود لتلبية القيود البيئية والاقتصادية.",
+                specFlueTitle: "تحليل الغازات", specFlueDesc: "قياسات انبعاثات غازات العادم في الموقع باستخدام معدات معتمدة ومعايرة.",
                 sectionClients: "عملاؤنا", sectionProjects: "أحدث المشاريع",
                 sectionConnect: "تواصل معنا",
                 contactAddr: "شارع عبد الله وشارع الأمير حمود، الخبر، السعودية",
@@ -360,7 +432,15 @@
             { en: "Design of Fuel system Retrofits", ar: "تصميم تحديثات أنظمة الوقود" },
             { en: "Fitness for Service Analysis", ar: "تحليل الصلاحية للخدمة" },
             { en: "Complete steam & hot water Projects", ar: "مشاريع البخار والمياه الساخنة المتكاملة" },
-            { en: "Boiler Failure and Remaining Life Analysis", ar: "تحليل فشل المراجل والعمر المتبقي" }
+            { en: "Boiler Failure and Remaining Life Analysis", ar: "تحليل فشل المراجل والعمر المتبقي" },
+            { en: "Boiler Plant Feasibility Studies", ar: "دراسات جدوى محطات المراجل" },
+            { en: "Monitoring and Diagnostics", ar: "المراقبة والتشخيص" },
+            { en: "Design and or retrofit of Economizer system", ar: "تصميم أو تحديث نظام الموفر" },
+            { en: "Feed water & fuel Tank supply Installation", ar: "توريـد وتركيب خزانات مياه التغذية والوقود" },
+            { en: "Steam piping auxiliary supply", ar: "توريـد ملحقات أنابيب البخار" },
+            { en: "Boiler Condition Assessment", ar: "تقييم حالة المرجل" },
+            { en: "Insulation & Refractory Evaluation", ar: "تقييم العزل والحراريات" },
+            { en: "Energy Optimization & Performance", ar: "تحسين الطاقة والأداء" }
         ];
 
         const clients = [
