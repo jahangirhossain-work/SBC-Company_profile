@@ -22,8 +22,8 @@
                     },
                     colors: {
                         brand: {
-                            red: '#EF4623', // Pomegranate
-                            dark: '#0B0F19', // Deep Black/Navy
+                            red: '#EF4623', // The specific Orange/Red from image
+                            dark: '#0B0F19', 
                             navy: '#161F30',
                             light: '#F8FAFC',
                             gray: '#E2E8F0',
@@ -94,7 +94,7 @@
             background-color: #EF4623; color: white; font-weight: 700; letter-spacing: 0.05em;
             padding: 14px 36px; border-radius: 4px; transition: all 0.3s;
             box-shadow: 0 10px 20px -10px rgba(239, 70, 35, 0.5);
-            position: relative; overflow: hidden; border: 1px solid #EF4623;
+            position: relative; overflow: hidden;
         }
         .btn-primary::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
@@ -103,36 +103,6 @@
         }
         .btn-primary:hover::after { left: 100%; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -10px rgba(239, 70, 35, 0.6); }
-
-        .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.1); color: white; font-weight: 700; letter-spacing: 0.05em;
-            padding: 14px 36px; border-radius: 4px; transition: all 0.3s;
-            backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.3);
-        }
-        .btn-secondary:hover { background-color: white; color: #0B0F19; transform: translateY(-2px); }
-
-        /* RTL Adjustments */
-        html[dir="rtl"] .text-left { text-align: right; }
-        html[dir="rtl"] .border-l-4 { border-left: 0; border-right: 4px solid; }
-        html[dir="rtl"] .border-r { border-right: 0; border-left: 1px solid; }
-        html[dir="rtl"] .border-l-8 { border-left: 0; border-right: 8px solid; }
-        html[dir="rtl"] .md\:border-r { border-right: 0; border-left: 1px solid #f3f4f6; }
-        
-        .gradient-text { background: linear-gradient(to right, #EF4623, #FF6B4A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Capability Item */
-        .capability-item {
-            display: flex; align-items: flex-start; gap: 12px;
-            padding: 12px; border-radius: 6px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .capability-item:hover {
-            background: #F8FAFC;
-            border-color: #E2E8F0;
-            transform: translateX(5px);
-        }
-        html[dir="rtl"] .capability-item:hover { transform: translateX(-5px); }
 
         /* Product Card */
         .product-card {
@@ -157,6 +127,64 @@
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin-bottom: 1rem; color: #EF4623; font-size: 1.5rem;
+        }
+
+        /* Stats Bar & Buttons Integration */
+        .stats-action-bar {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto 1fr 1fr;
+            gap: 0;
+            align-items: center;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            color: white;
+        }
+        .stat-item:last-child { border-right: none; }
+        .action-group {
+            display: flex;
+            padding: 0;
+        }
+        .action-btn {
+            padding: 24px 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .btn-orange { background: #EF4623; color: white; }
+        .btn-orange:hover { background: #d63918; }
+        .btn-dark { background: #1F2937; color: white; border-left: 1px solid #374151; border-right: 1px solid #374151; }
+        .btn-dark:hover { background: #111827; }
+
+        /* Responsive adjustments for stats bar */
+        @media (max-width: 1024px) {
+            .stats-action-bar { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
+            .action-group { grid-column: span 2; order: -1; width: 100%; }
+            .action-btn { width: 50%; text-align: center; padding: 20px; }
+            .stat-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+
+        /* Dark Card Style */
+        .dark-card {
+            background: #0B0F19;
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .dark-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: #EF4623;
         }
     </style>
 </head>
@@ -224,7 +252,7 @@
     </nav>
 
     <!-- Hero Section with Video Background -->
-    <section id="home" class="min-h-screen flex items-center justify-center text-center px-6 pt-20 relative overflow-hidden">
+    <section id="home" class="min-h-screen flex flex-col relative overflow-hidden">
         <!-- Video Background -->
         <div class="hero-video-container">
             <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1565439368560-6e469d76e271?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
@@ -233,63 +261,65 @@
             <div class="hero-overlay"></div>
         </div>
 
-        <div class="max-w-6xl relative z-10 text-white pt-20" data-aos="fade-up" data-aos-duration="1200">
-            <div class="flex justify-center items-center gap-4 mb-8">
-                <div class="h-px w-12 bg-brand-red"></div>
-                <span class="text-xs font-bold tracking-[0.3em] uppercase text-brand-red" data-i18n="profileYear">ESTABLISHED 2012</span>
-                <div class="h-px w-12 bg-brand-red"></div>
-            </div>
-            
-            <h1 class="text-6xl lg:text-9xl font-medium mb-8 leading-tight drop-shadow-2xl" data-i18n="heroTitle">
-                INDUSTRIAL<br>
-                <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">EXCELLENCE</span>
-            </h1>
-            
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-12" data-i18n="heroDesc">
-                "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. The Kingdom's premier specialist in steam generation and thermal engineering."
-            </p>
-            
-            <!-- Vision & Mission Badges -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
-                <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
-                    <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
-                        <i class="fa-solid fa-eye"></i> <span data-i18n="visionTitle">OUR VISION</span>
-                    </h4>
-                    <p class="text-sm text-gray-300 leading-relaxed" data-i18n="visionDesc">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
+        <!-- Content Center -->
+        <div class="flex-grow flex items-center justify-center text-center px-6 relative z-10 text-white">
+            <div class="max-w-6xl" data-aos="fade-up" data-aos-duration="1200">
+                <div class="flex justify-center items-center gap-4 mb-8">
+                    <div class="h-px w-12 bg-brand-red"></div>
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase text-brand-red" data-i18n="profileYear">ESTABLISHED 2012</span>
+                    <div class="h-px w-12 bg-brand-red"></div>
                 </div>
-                <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
-                    <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
-                        <i class="fa-solid fa-bullseye"></i> <span data-i18n="missionTitle">OUR MISSION</span>
-                    </h4>
-                    <p class="text-sm text-gray-300 leading-relaxed" data-i18n="missionDesc">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
+                
+                <h1 class="text-6xl lg:text-9xl font-medium mb-8 leading-tight drop-shadow-2xl" data-i18n="heroTitle">
+                    INDUSTRIAL<br>
+                    <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">EXCELLENCE</span>
+                </h1>
+                
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-12" data-i18n="heroDesc">
+                    "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. The Kingdom's premier specialist in steam generation and thermal engineering."
+                </p>
+                
+                <!-- Vision & Mission -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
+                        <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
+                            <i class="fa-solid fa-eye"></i> <span data-i18n="visionTitle">OUR VISION</span>
+                        </h4>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="visionDesc">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
+                        <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
+                            <i class="fa-solid fa-bullseye"></i> <span data-i18n="missionTitle">OUR MISSION</span>
+                        </h4>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="missionDesc">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="#products" class="btn-primary rounded-sm shadow-glow" data-i18n="btnProducts">OUR PRODUCTS</a>
-                <a href="#vendor-codes" class="btn-secondary rounded-sm hover:bg-white hover:text-brand-dark transition tracking-widest text-xs" data-i18n="btnVendor">VENDOR CODES</a>
             </div>
         </div>
 
-        <!-- Animated Stats Bar -->
-        <div class="absolute bottom-0 w-full border-t border-white/10 bg-brand-dark/80 backdrop-blur-lg hidden lg:block">
-            <div class="max-w-7xl mx-auto px-12 py-6 grid grid-cols-4 gap-8 text-white">
-                <div class="text-center border-r border-white/10">
-                    <p class="text-3xl font-mono font-bold text-brand-red count-up" data-target="30">0</p>
-                    <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statExp">Years Experience</p>
-                </div>
-                <div class="text-center border-r border-white/10">
-                    <p class="text-3xl font-mono font-bold text-white count-up" data-target="100">0</p>
-                    <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statLocal">% Saudi Owned</p>
-                </div>
-                <div class="text-center border-r border-white/10">
-                    <p class="text-3xl font-mono font-bold text-white">24/7</p>
-                    <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statSupport">Support</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-3xl font-mono font-bold text-white">ASME</p>
-                    <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statCode">Code Compliant</p>
-                </div>
+        <!-- Advanced Stats & Action Bar -->
+        <div class="stats-action-bar relative z-20">
+            <div class="stat-item">
+                <p class="text-3xl font-header font-bold text-brand-red count-up" data-target="30">0</p>
+                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statExp">YEARS EXPERIENCE</p>
+            </div>
+            <div class="stat-item">
+                <p class="text-3xl font-header font-bold text-white count-up" data-target="100">0</p>
+                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statLocal">% SAUDI OWNED</p>
+            </div>
+            
+            <div class="action-group">
+                <a href="#products" class="action-btn btn-orange" data-i18n="btnProducts">OUR PRODUCTS</a>
+                <a href="#vendor-codes" class="action-btn btn-dark" data-i18n="btnVendor">VENDOR CODES</a>
+            </div>
+
+            <div class="stat-item">
+                <p class="text-3xl font-header font-bold text-white">24/7</p>
+                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statSupport">SUPPORT</p>
+            </div>
+            <div class="stat-item">
+                <p class="text-3xl font-header font-bold text-white">ASME</p>
+                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statCode">CODE COMPLIANT</p>
             </div>
         </div>
     </section>
@@ -388,7 +418,7 @@
         </div>
     </section>
 
-    <!-- Team Section (Deep Details & Objectives) -->
+    <!-- Team Section (Updated Objectives) -->
     <section id="team" class="py-24 bg-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
@@ -409,13 +439,17 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Updated Dark Card for Objectives -->
                 <div data-aos="fade-left">
-                    <div class="bg-brand-dark text-white p-10 rounded-2xl shadow-premium relative overflow-hidden h-full">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-red rounded-full blur-[100px] opacity-20"></div>
-                        <h4 class="text-2xl font-bold mb-8 text-white flex items-center gap-4 pb-4 border-b border-gray-700">
-                            <i class="fa-solid fa-bullseye text-brand-red"></i>
-                            <span data-i18n="teamObjectives">CORE OBJECTIVES</span>
-                        </h4>
+                    <div class="dark-card text-white h-full flex flex-col justify-center">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-red rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
+                        
+                        <div class="flex items-center gap-4 mb-10">
+                            <i class="fa-solid fa-bullseye text-brand-red text-3xl"></i>
+                            <h4 class="text-3xl font-header font-bold tracking-wide" data-i18n="teamObjectives">CORE OBJECTIVES</h4>
+                        </div>
+                        
                         <ul class="space-y-6" id="objectives-list">
                             <!-- JS Injected -->
                         </ul>
@@ -425,7 +459,7 @@
         </div>
     </section>
 
-    <!-- Capabilities (Full List from PDF) -->
+    <!-- Capabilities -->
     <section id="capabilities" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -441,7 +475,7 @@
         </div>
     </section>
 
-    <!-- Engineering & Industrial Services (Full Content from PDF Page 5) -->
+    <!-- Services -->
     <section id="services" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
@@ -481,7 +515,7 @@
         </div>
     </section>
 
-    <!-- Specialized Services (Full Content from PDF Page 9) -->
+    <!-- Specialized Services -->
     <section id="specialized" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -634,10 +668,8 @@
                 prodFireTitle: "FIRETUBE BOILERS", prodFireDesc: "Robust steam and hot water generation for industrial process applications. Designed for reliability and ease of maintenance.",
                 prodWaterTitle: "WATERTUBE BOILERS", prodWaterDesc: "High-capacity, high-pressure solutions for power generation, petrochemical, and large-scale utility applications.",
                 prodElecTitle: "ELECTRIC BOILERS", prodElecDesc: "Compact, clean, and efficient steam generation for specialized environments requiring zero footprint emissions.",
-                // Strategic Rental
-                fleetStatus: "FLEET READY FOR DEPLOYMENT", rentTitle: "STRATEGIC RENTAL<br><span class='text-brand-red'>SOLUTIONS</span>", 
-                rentDesc: "We maintain the Middle East's largest inventory of mobile steam boilers. Skid-mounted and containerized units ready to mobilize within 24 hours for planned maintenance or emergency shutdowns.",
-                btnBook: "BOOK A UNIT",
+                // Strategic Rental Removed, Product focus
+                
                 sectionTeam: "UNMATCHED EXPERTISE", navTeam: "OUR TEAM",
                 teamDesc1: "Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.",
                 teamDesc2: "Proven expertise in thermal design of heat transfer equipment including utility, industrial and packaged boilers, air-cooled, shell & tube, plate & frame, brazed aluminum type heat exchangers, and process fired heaters.",
@@ -682,10 +714,7 @@
                 prodFireTitle: "مراجل أنابيب اللهب", prodFireDesc: "توليد قوي للبخار والمياه الساخنة للتطبيقات الصناعية. مصممة للموثوقية وسهولة الصيانة.",
                 prodWaterTitle: "مراجل أنابيب المياه", prodWaterDesc: "حلول عالية السعة والضغط لتوليد الطاقة والبتروكيماويات والمرافق الكبيرة.",
                 prodElecTitle: "المراجل الكهربائية", prodElecDesc: "توليد بخار نظيف وفعال للبيئات المتخصصة التي تتطلب انعدام الانبعاثات.",
-                // Strategic Rental
-                fleetStatus: "الأسطول جاهز للنشر", rentTitle: "حلول التأجير<br><span class='text-brand-red'>الاستراتيجية</span>",
-                rentDesc: "نحافظ على أكبر مخزون من المراجل البخارية المتنقلة في الشرق الأوسط. وحدات مثبتة على قواعد وحاويات جاهزة للتعبئة خلال 24 ساعة.",
-                btnBook: "احجز وحدة",
+                // Strategic Rental Removed
                 sectionTeam: "خبرات لا تضاهى", navTeam: "فريقنا",
                 teamDesc1: "فريق المراجل السعودية فريد من نوعه بين مقدمي الخدمات الهندسية والصناعية. الفريق هو الوحيد في الشرق الأوسط المتخصص فقط في خدمات هندسة معدات العمليات.",
                 teamDesc2: "خبرة مثبتة في التصميم الحراري لمعدات نقل الحرارة بما في ذلك مراجل المرافق والمراجل الصناعية، المبادلات الحرارية المبردة بالهواء، الأنبوبية، والألواح، وسخانات العمليات.",
@@ -776,7 +805,7 @@
             document.getElementById('objectives-list').innerHTML = objectives.map(o => `
                 <li class="flex items-start gap-4">
                     <div class="mt-1 min-w-[20px] text-brand-red"><i class="fa-solid fa-check"></i></div>
-                    <span class="text-gray-300 text-sm">${lang === 'en' ? o.en : o.ar}</span>
+                    <span class="text-gray-300 text-sm font-bold">${lang === 'en' ? o.en : o.ar}</span>
                 </li>
             `).join('');
 
