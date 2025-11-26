@@ -26,13 +26,22 @@
                             orange: '#EF4623', 
                             navy: '#0F172A',
                             slate: '#334155',
-                            light: '#F1F5F9',
+                            light: '#F8FAFC', /* Slightly lighter for cleaner look */
                             border: '#E2E8F0'
                         }
                     },
                     boxShadow: {
-                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                        'floating': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                        'card': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 20px rgba(239, 70, 35, 0.15)',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
                     }
                 }
             }
@@ -40,8 +49,14 @@
     </script>
     <style>
         /* Corporate Profile Styles */
-        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; color: #334155; line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; color: #334155; line-height: 1.6; overflow-x: hidden; }
         
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F172A; }
+        ::-webkit-scrollbar-thumb { background: #EF4623; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #c93516; }
+
         /* Typography System */
         h1, h2, h3, h4, h5 { font-family: 'Archivo', sans-serif; color: #0F172A; text-transform: uppercase; letter-spacing: -0.02em; }
         
@@ -51,7 +66,9 @@
         /* Section Dividers */
         .section-divider {
             width: 60px; height: 4px; background: #EF4623; margin-top: 1rem; margin-bottom: 2rem;
+            transition: width 0.3s ease;
         }
+        .group:hover .section-divider { width: 100px; }
 
         /* Hero Section - UPDATED */
         .hero-section {
@@ -79,7 +96,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.4); /* Darken video for text readability */
+            filter: brightness(0.35) contrast(1.1); /* Darken video for text readability */
+            transform: scale(1.05); /* Slight zoom to avoid edges */
         }
 
         .hero-content {
@@ -92,17 +110,18 @@
         /* Advanced Navigation Styles */
         #main-nav {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
         /* Scrolled State */
         #main-nav.nav-scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            padding-top: 15px;
-            padding-bottom: 15px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+            padding-top: 12px;
+            padding-bottom: 12px;
         }
 
         /* Link Colors & Effects */
@@ -115,22 +134,22 @@
         }
         
         /* Initial State (Transparent BG) */
-        #main-nav:not(.nav-scrolled) .nav-link { color: rgba(255,255,255,0.8); }
+        #main-nav:not(.nav-scrolled) .nav-link { color: rgba(255,255,255,0.9); text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
         #main-nav:not(.nav-scrolled) .nav-link:hover { color: #FFFFFF; }
         #main-nav:not(.nav-scrolled) .brand-text { color: white; }
         #main-nav:not(.nav-scrolled) .brand-sub { color: #EF4623; opacity: 0.9; }
-        #main-nav:not(.nav-scrolled) .logo-img { filter: brightness(0) invert(1); } /* Force White Logo */
-        #main-nav:not(.nav-scrolled) .lang-btn { color: white; border-color: rgba(255,255,255,0.3); }
+        #main-nav:not(.nav-scrolled) .logo-img { filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.3)); } /* Force White Logo */
+        #main-nav:not(.nav-scrolled) .lang-btn { color: white; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
+        #main-nav:not(.nav-scrolled) .mobile-toggle { color: white; }
 
         /* Scrolled State (White BG) */
-        #main-nav.nav-scrolled .nav-link { color: #334155; }
+        #main-nav.nav-scrolled .nav-link { color: #334155; text-shadow: none; }
         #main-nav.nav-scrolled .nav-link:hover { color: #EF4623; }
         #main-nav.nav-scrolled .brand-text { color: #0F172A; }
         #main-nav.nav-scrolled .brand-sub { color: #EF4623; }
         #main-nav.nav-scrolled .logo-img { filter: none; } /* Original Colors */
-        #main-nav.nav-scrolled .lang-btn { color: #0F172A; border-color: #E2E8F0; }
+        #main-nav.nav-scrolled .lang-btn { color: #0F172A; border-color: #E2E8F0; background: transparent; }
         #main-nav.nav-scrolled .mobile-toggle { color: #0F172A; }
-        #main-nav:not(.nav-scrolled) .mobile-toggle { color: white; }
 
         /* Hover Underline Animation */
         .nav-link::after {
@@ -142,26 +161,46 @@
 
         /* Profile Cards */
         .profile-card {
-            background: white; border: 1px solid #E2E8F0; padding: 2rem;
-            transition: all 0.3s ease; border-left: 4px solid transparent;
+            background: white; border: 1px solid #E2E8F0; padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-left: 4px solid transparent;
+            position: relative; overflow: hidden; z-index: 1;
         }
         .profile-card:hover {
-            border-left-color: #EF4623; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transform: translateY(-5px);
+            border-left-color: #EF4623; box-shadow: 0 20px 40px rgba(0,0,0,0.08); transform: translateY(-8px);
         }
+        .profile-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom right, #fff, #f8fafc); z-index: -1; opacity: 0; transition: opacity 0.4s;
+        }
+        .profile-card:hover::before { opacity: 1; }
 
         /* Tech Grid (Capabilities) */
         .tech-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: #E2E8F0;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: #E2E8F0; border: 1px solid #E2E8F0;
         }
         .tech-item {
-            background: white; padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
+            background: white; padding: 1.5rem; display: flex; align-items: center; gap: 1rem;
+            transition: all 0.3s ease; cursor: default;
         }
+        .tech-item:hover { background: #0F172A; }
+        .tech-item:hover span { color: white; }
+        .tech-item:hover i { color: #EF4623; transform: translateX(5px); }
         
         /* Project Table */
         .project-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
-        .project-table th { background: #0F172A; color: white; padding: 12px 16px; text-align: left; font-family: 'Archivo'; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-        .project-table td { border-bottom: 1px solid #E2E8F0; padding: 12px 16px; color: #475569; }
-        .project-table tr:hover td { background: #F8FAFC; }
+        .project-table th { background: #0F172A; color: white; padding: 16px 20px; text-align: left; font-family: 'Archivo'; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+        .project-table td { border-bottom: 1px solid #E2E8F0; padding: 16px 20px; color: #475569; transition: background 0.2s; }
+        .project-table tr:hover td { background: #F1F5F9; color: #0F172A; }
+        
+        /* Vendor Grid */
+        .vendor-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .vendor-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -192,7 +231,7 @@
                 </div>
                 
                 <!-- Language Toggle -->
-                <button id="langToggle" class="lang-btn font-bold border px-3 py-1 rounded-sm text-xs hover:bg-white hover:text-brand-navy transition-all duration-300">AR</button>
+                <button id="langToggle" class="lang-btn font-bold border px-4 py-1.5 rounded-full text-xs hover:bg-brand-orange hover:text-white hover:border-brand-orange transition-all duration-300">AR</button>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -204,13 +243,13 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-xl border-t border-brand-border p-6 shadow-2xl absolute w-full left-0 top-full h-screen overflow-y-auto pb-32 transition-all">
             <div class="flex flex-col gap-6 text-sm font-bold text-brand-navy">
-                <a href="#about" class="py-2 border-b border-gray-100" data-i18n="navGeneral">GENERAL INFO</a>
-                <a href="#vendors" class="py-2 border-b border-gray-100" data-i18n="navVendors">VENDORS</a>
-                <a href="#services" class="py-2 border-b border-gray-100" data-i18n="navServices">SERVICES</a>
-                <a href="#capabilities" class="py-2 border-b border-gray-100" data-i18n="navCapabilities">CAPABILITIES</a>
-                <a href="#projects" class="py-2 border-b border-gray-100" data-i18n="navProjects">PROJECTS</a>
-                <a href="#team" class="py-2 border-b border-gray-100" data-i18n="navTeam">TEAM</a>
-                <button id="langToggleMobile" class="text-left text-brand-orange py-2">SWITCH LANGUAGE</button>
+                <a href="#about" class="py-3 border-b border-gray-100" data-i18n="navGeneral">GENERAL INFO</a>
+                <a href="#vendors" class="py-3 border-b border-gray-100" data-i18n="navVendors">VENDORS</a>
+                <a href="#services" class="py-3 border-b border-gray-100" data-i18n="navServices">SERVICES</a>
+                <a href="#capabilities" class="py-3 border-b border-gray-100" data-i18n="navCapabilities">CAPABILITIES</a>
+                <a href="#projects" class="py-3 border-b border-gray-100" data-i18n="navProjects">PROJECTS</a>
+                <a href="#team" class="py-3 border-b border-gray-100" data-i18n="navTeam">TEAM</a>
+                <button id="langToggleMobile" class="text-left text-brand-orange py-3 font-bold">SWITCH LANGUAGE</button>
             </div>
         </div>
     </nav>
@@ -227,22 +266,22 @@
 
         <div class="hero-content px-6">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-8" data-aos="fade-up">
-                    <div class="inline-block bg-brand-orange text-white text-[10px] font-bold tracking-[0.2em] px-3 py-1 mb-6 uppercase rounded-sm">
+                <div class="lg:col-span-8 text-center lg:text-left" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="inline-block bg-brand-orange text-white text-[10px] font-bold tracking-[0.2em] px-4 py-1.5 mb-8 uppercase rounded-full shadow-lg transform hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
                         <span data-i18n="estBadge">Established 2012 | Kingdom of Saudi Arabia</span>
                     </div>
                     
-                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8">
-                        <span data-i18n="heroTitle1">OPTIMIZED SOLUTIONS</span><br>
-                        <span class="text-brand-orange" data-i18n="heroTitle2">FOR INDUSTRIAL BOILERS</span>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8 drop-shadow-2xl">
+                        <span data-i18n="heroTitle1" data-aos="fade-up" data-aos-delay="300">OPTIMIZED SOLUTIONS</span><br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-orange-400" data-i18n="heroTitle2" data-aos="fade-up" data-aos-delay="500">FOR INDUSTRIAL BOILERS</span>
                     </h1>
                     
-                    <p class="text-lg text-gray-300 max-w-2xl mb-10 font-light leading-relaxed border-l-4 border-gray-500 pl-6" data-i18n="heroDesc">
+                    <p class="text-lg text-gray-200 max-w-2xl mb-12 font-light leading-relaxed lg:border-l-4 lg:border-white/30 lg:pl-6 mx-auto lg:mx-0" data-i18n="heroDesc" data-aos="fade-up" data-aos-delay="700">
                         Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disaster, shut-down, testing, or planned downtime, we have the solution.
                     </p>
                     
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#services" class="bg-white text-brand-navy font-bold px-8 py-4 text-sm tracking-widest hover:bg-gray-100 transition text-center min-w-[200px]" data-i18n="btnServices">OUR SERVICES</a>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" data-aos="fade-up" data-aos-delay="900">
+                        <a href="#services" class="bg-white text-brand-navy font-bold px-10 py-4 text-sm tracking-widest hover:bg-brand-orange hover:text-white transition-all duration-300 text-center min-w-[200px] rounded shadow-lg hover:shadow-glow transform hover:-translate-y-1" data-i18n="btnServices">OUR SERVICES</a>
                     </div>
                 </div>
             </div>
@@ -250,36 +289,47 @@
     </section>
 
     <!-- 2. GENERAL INFORMATION (About) -->
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <!-- Decorative BG Element -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-light rounded-full blur-3xl -mr-32 -mt-32 z-0 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <div data-aos="fade-right">
-                    <span class="text-xs font-bold text-gray-400 tracking-widest uppercase block mb-2" data-i18n="sectionGeneral">GENERAL INFORMATION</span>
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <span class="text-xs font-bold text-gray-400 tracking-widest uppercase block mb-3 flex items-center gap-2">
+                        <span class="w-8 h-px bg-brand-orange"></span> <span data-i18n="sectionGeneral">GENERAL INFORMATION</span>
+                    </span>
                     <h2 class="text-4xl font-black text-brand-navy mb-8 leading-tight" data-i18n="aboutTitle">BOILER SPECIALIST<br>COMPANY</h2>
                     
-                    <div class="prose text-gray-600 mb-8 text-justify leading-relaxed space-y-4">
-                        <p data-i18n="genInfo1">
+                    <div class="prose text-gray-600 mb-8 text-justify leading-relaxed space-y-6">
+                        <p data-i18n="genInfo1" class="hover:text-brand-navy transition duration-300">
                             SAUDI BOILERS is a Boiler Specialist Company providing expert boiler services for all types of boilers and conducting preventive maintenance for all types of boilers in all industrial sectors.
                         </p>
-                        <p data-i18n="genInfo2">
+                        <p data-i18n="genInfo2" class="hover:text-brand-navy transition duration-300">
                             SAUDI BOILERS provides Optimized Solutions to end users through its unique blend of industrial expertise and use of expert resources.
                         </p>
-                        <p data-i18n="genInfo3">
+                        <p data-i18n="genInfo3" class="hover:text-brand-navy transition duration-300">
                             We have a team of engineers, expert technicians, and professionals inspired to work at their best along with associate companies & partners globally who are experts in their respective domains.
                         </p>
                     </div>
                 </div>
 
-                <div class="bg-brand-light p-10 lg:p-12 rounded-sm border border-brand-border" data-aos="fade-left">
+                <div class="bg-brand-light p-10 lg:p-12 rounded-2xl border border-white shadow-xl hover:shadow-2xl transition-shadow duration-500" data-aos="fade-left" data-aos-duration="1000">
                     <h3 class="text-2xl font-black text-brand-navy mb-8 border-b border-brand-border pb-4" data-i18n="visMisTitle">VISION & MISSION</h3>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="font-bold text-brand-orange mb-2 text-sm uppercase tracking-wider" data-i18n="visionHeader">Our Vision</h4>
-                            <p class="text-sm text-gray-600" data-i18n="visionDesc">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
+                    <div class="space-y-10">
+                        <div data-aos="fade-up" data-aos-delay="200">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-orange shadow-sm mb-4">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-navy mb-2 text-sm uppercase tracking-wider" data-i18n="visionHeader">Our Vision</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed" data-i18n="visionDesc">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-brand-orange mb-2 text-sm uppercase tracking-wider" data-i18n="missionHeader">Our Mission</h4>
-                            <p class="text-sm text-gray-600" data-i18n="missionDesc">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
+                        <div data-aos="fade-up" data-aos-delay="400">
+                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand-orange shadow-sm mb-4">
+                                <i class="fa-solid fa-bullseye"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-navy mb-2 text-sm uppercase tracking-wider" data-i18n="missionHeader">Our Mission</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed" data-i18n="missionDesc">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
                         </div>
                     </div>
                 </div>
@@ -288,14 +338,17 @@
     </section>
 
     <!-- 3. VENDOR CODES -->
-    <section id="vendors" class="py-16 bg-brand-navy text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-black mb-4" data-i18n="vendorTitle">OFFICIAL VENDOR CODES</h2>
+    <section id="vendors" class="py-20 bg-brand-navy text-white relative overflow-hidden">
+        <!-- Animated Background Pattern -->
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-down">
+                <h2 class="text-3xl font-black mb-4 tracking-tight" data-i18n="vendorTitle">OFFICIAL VENDOR CODES</h2>
                 <p class="text-gray-400 max-w-2xl mx-auto text-sm" data-i18n="vendorDesc">Registered with the Kingdom's most prestigious industrial entities.</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="vendor-grid">
-                <!-- JS Injected -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6" id="vendor-grid">
+                <!-- JS Injected with Animations -->
             </div>
         </div>
     </section>
@@ -303,29 +356,35 @@
     <!-- 4. ENGINEERING & INDUSTRIAL SERVICES -->
     <section id="services" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
+            <div class="mb-16" data-aos="fade-right">
                 <span class="text-xs font-bold text-brand-orange tracking-widest uppercase block mb-2" data-i18n="sectionEng">EXPERTISE</span>
                 <h2 class="text-4xl font-black text-brand-navy" data-i18n="engTitle">ENGINEERING &<br>INDUSTRIAL SERVICES</h2>
                 <div class="section-divider"></div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-brand-border">
-                    <h3 class="text-xl font-bold text-brand-navy mb-4" data-i18n="engService1Title">Comprehensive Solutions</h3>
+                <div class="bg-white p-10 rounded-xl shadow-card border border-transparent hover:border-brand-orange transition-all duration-500 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-brand-light rounded-lg flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-gears text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-navy mb-4 group-hover:translate-x-1 transition-transform" data-i18n="engService1Title">Comprehensive Solutions</h3>
                     <p class="text-sm text-gray-600 leading-relaxed mb-4" data-i18n="engService1Desc1">
-                        Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels. We offer services from boiler surveys, inspections, repairs, and revamp, as well as the design, supply, installation, and commissioning of complete boiler systems.
+                        Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels.
                     </p>
                     <p class="text-sm text-gray-600 leading-relaxed" data-i18n="engService1Desc2">
-                        Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels to ASME standards.
+                        Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers.
                     </p>
                 </div>
-                <div class="bg-white p-8 rounded-sm shadow-sm border border-brand-border">
-                    <h3 class="text-xl font-bold text-brand-navy mb-4" data-i18n="engService2Title">Engineering Consulting</h3>
+                <div class="bg-white p-10 rounded-xl shadow-card border border-transparent hover:border-brand-orange transition-all duration-500 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-brand-light rounded-lg flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-compass-drafting text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-navy mb-4 group-hover:translate-x-1 transition-transform" data-i18n="engService2Title">Engineering Consulting</h3>
                     <p class="text-sm text-gray-600 leading-relaxed mb-4" data-i18n="engService2Desc1">
-                        Saudi Boiler provides specialized consulting engineering, supply, installation & rental services based on knowledge-intensive experience. We assist major Saudi industries in providing cost-effective solutions for better, efficient, and reliable continued plant operation.
+                        Saudi Boiler provides specialized consulting engineering, supply, installation & rental services based on knowledge-intensive experience.
                     </p>
                     <p class="text-sm text-gray-600 leading-relaxed" data-i18n="engService2Desc2">
-                        We believe engineering services translate industrial project concepts into real form through successive applications of intellectual inputs, technology transfer, and local engineering capability promotion.
+                        We believe engineering services translate industrial project concepts into real form through successive applications of intellectual inputs.
                     </p>
                 </div>
             </div>
@@ -335,34 +394,45 @@
     <!-- 5. OUR TEAM -->
     <section id="team" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div class="lg:col-span-5 bg-brand-navy text-white p-10 flex flex-col justify-center">
-                    <h2 class="text-3xl font-black mb-6" data-i18n="teamTitle">OUR EXPERT TEAM</h2>
-                    <p class="text-sm text-gray-300 mb-6 leading-relaxed" data-i18n="teamDesc1">
-                        Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.
-                    </p>
-                    <p class="text-sm text-gray-300 leading-relaxed" data-i18n="teamDesc2">
-                        Most importantly, Saudi Boilers team works with operations and maintenance entities to protect their investments, and to ensure that the contractors and suppliers meet their commitments.
-                    </p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-5 bg-brand-navy text-white p-12 flex flex-col justify-center rounded-2xl relative overflow-hidden" data-aos="fade-right">
+                    <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-transparent to-black opacity-50"></div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-black mb-8" data-i18n="teamTitle">OUR EXPERT TEAM</h2>
+                        <p class="text-sm text-gray-300 mb-6 leading-relaxed" data-i18n="teamDesc1">
+                            Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.
+                        </p>
+                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="teamDesc2">
+                            Most importantly, Saudi Boilers team works with operations and maintenance entities to protect their investments.
+                        </p>
+                    </div>
                 </div>
-                <div class="lg:col-span-7">
-                    <h3 class="text-xl font-bold text-brand-navy mb-6" data-i18n="teamObjTitle">Objectives & Competencies</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
-                            <span class="text-sm text-gray-600" data-i18n="teamObj1">Proven expertise in thermal design of heat transfer equipment (utility, industrial, packaged boilers).</span>
+                <div class="lg:col-span-7 py-8">
+                    <h3 class="text-xl font-bold text-brand-navy mb-8" data-i18n="teamObjTitle" data-aos="fade-down">Objectives & Competencies</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4 group" data-aos="fade-left" data-aos-delay="100">
+                            <div class="w-8 h-8 rounded-full bg-brand-light flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 pt-1 group-hover:text-brand-navy transition-colors" data-i18n="teamObj1">Proven expertise in thermal design of heat transfer equipment.</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
-                            <span class="text-sm text-gray-600" data-i18n="teamObj2">Handling heat transfer equipment auxiliaries like refractory engineering and industrial insulation.</span>
+                        <li class="flex items-start gap-4 group" data-aos="fade-left" data-aos-delay="200">
+                            <div class="w-8 h-8 rounded-full bg-brand-light flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 pt-1 group-hover:text-brand-navy transition-colors" data-i18n="teamObj2">Handling heat transfer equipment auxiliaries like refractory engineering.</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
-                            <span class="text-sm text-gray-600" data-i18n="teamObj3">Spread Engineering Concept in Industrial community in KSA.</span>
+                        <li class="flex items-start gap-4 group" data-aos="fade-left" data-aos-delay="300">
+                            <div class="w-8 h-8 rounded-full bg-brand-light flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 pt-1 group-hover:text-brand-navy transition-colors" data-i18n="teamObj3">Spread Engineering Concept in Industrial community in KSA.</span>
                         </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
-                            <span class="text-sm text-gray-600" data-i18n="teamObj4">Enhance local engineers' competencies to handle various engineering disciplines.</span>
+                        <li class="flex items-start gap-4 group" data-aos="fade-left" data-aos-delay="400">
+                            <div class="w-8 h-8 rounded-full bg-brand-light flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-check text-xs"></i>
+                            </div>
+                            <span class="text-sm text-gray-600 pt-1 group-hover:text-brand-navy transition-colors" data-i18n="teamObj4">Enhance local engineers' competencies to handle various engineering disciplines.</span>
                         </li>
                     </ul>
                 </div>
@@ -373,45 +443,45 @@
     <!-- 6. CAPABILITIES -->
     <section id="capabilities" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12">
+            <div class="mb-12" data-aos="fade-down">
                 <h2 class="text-3xl font-black text-brand-navy" data-i18n="capTitle">TECHNICAL CAPABILITIES</h2>
                 <div class="section-divider"></div>
             </div>
-            <div class="tech-grid rounded-lg overflow-hidden shadow-card" id="capabilities-grid">
+            <div class="tech-grid rounded-xl overflow-hidden shadow-card bg-white" id="capabilities-grid">
                 <!-- JS Injected -->
             </div>
         </div>
     </section>
 
-    <!-- 8. SPECIALIZED SERVICES (Moved up for flow) -->
+    <!-- 8. SPECIALIZED SERVICES -->
     <section id="specialized" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-20" data-aos="fade-up">
                 <span class="text-xs font-bold text-brand-orange tracking-widest uppercase" data-i18n="specSubTitle">ADVANCED SOLUTIONS</span>
-                <h2 class="text-3xl font-black text-brand-navy mt-2" data-i18n="specTitle">SPECIALIZED SERVICES</h2>
+                <h2 class="text-4xl font-black text-brand-navy mt-3 tracking-tight" data-i18n="specTitle">SPECIALIZED SERVICES</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="profile-card">
+                <div class="profile-card" data-aos="fade-up" data-aos-delay="100">
                     <h4 class="font-bold text-brand-navy mb-3" data-i18n="spec1Title">Boiler Failure Root Cause Analysis</h4>
                     <p class="text-xs text-gray-600" data-i18n="spec1Desc">Using influence diagram analysis to determine contribution of root cause influences to prevent recurrence.</p>
                 </div>
-                <div class="profile-card">
+                <div class="profile-card" data-aos="fade-up" data-aos-delay="200">
                     <h4 class="font-bold text-brand-navy mb-3" data-i18n="spec2Title">Expert Inspection Services</h4>
                     <p class="text-xs text-gray-600" data-i18n="spec2Desc">Proper inspection techniques for all boiler components to ensure accurate diagnostics and remedies.</p>
                 </div>
-                <div class="profile-card">
+                <div class="profile-card" data-aos="fade-up" data-aos-delay="300">
                     <h4 class="font-bold text-brand-navy mb-3" data-i18n="spec3Title">Boiler Circulation Analysis</h4>
                     <p class="text-xs text-gray-600" data-i18n="spec3Desc">The only team in KSA assessing internal circulation to solve tube overheating and mitigate furnace tube failures.</p>
                 </div>
-                <div class="profile-card">
+                <div class="profile-card" data-aos="fade-up" data-aos-delay="400">
                     <h4 class="font-bold text-brand-navy mb-3" data-i18n="spec4Title">Shutdown Management</h4>
                     <p class="text-xs text-gray-600" data-i18n="spec4Desc">Detailed service programs for pressure, auxiliary, and control components to prolong boiler life.</p>
                 </div>
-                <div class="profile-card">
+                <div class="profile-card" data-aos="fade-up" data-aos-delay="500">
                     <h4 class="font-bold text-brand-navy mb-3" data-i18n="spec5Title">Fuel Switch Studies</h4>
                     <p class="text-xs text-gray-600" data-i18n="spec5Desc">Technical and feasibility studies for switching fuels to meet environmental and economic constraints.</p>
                 </div>
-                <div class="profile-card">
+                <div class="profile-card" data-aos="fade-up" data-aos-delay="600">
                     <h4 class="font-bold text-brand-navy mb-3" data-i18n="spec6Title">Flue Gas Analysis</h4>
                     <p class="text-xs text-gray-600" data-i18n="spec6Desc">On-site exhaust gas emission measurements using calibrated, standard, and certified equipment.</p>
                 </div>
@@ -422,8 +492,11 @@
     <!-- 7. OUR PROJECTS -->
     <section id="projects" class="py-24 bg-brand-light">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl font-black text-brand-navy mb-8" data-i18n="projTitle">OUR PROJECTS</h2>
-            <div class="bg-white rounded-sm shadow-sm overflow-hidden overflow-x-auto">
+            <div class="flex justify-between items-end mb-10" data-aos="fade-right">
+                <h2 class="text-3xl font-black text-brand-navy" data-i18n="projTitle">OUR PROJECTS</h2>
+                <div class="w-20 h-1 bg-brand-orange"></div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden overflow-x-auto border border-gray-100" data-aos="fade-up">
                 <table class="project-table">
                     <thead>
                         <tr>
@@ -444,8 +517,8 @@
     <section id="clients" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <!-- Clients -->
-            <div class="mb-20">
-                <h2 class="text-2xl font-black text-brand-navy mb-8 text-center" data-i18n="clientsTitle">OUR CLIENTS</h2>
+            <div class="mb-24">
+                <h2 class="text-2xl font-black text-brand-navy mb-10 text-center tracking-wider" data-i18n="clientsTitle" data-aos="fade-up">OUR CLIENTS</h2>
                 <div class="flex flex-wrap justify-center gap-4" id="clients-list">
                     <!-- JS Injected -->
                 </div>
@@ -453,7 +526,7 @@
             
             <!-- Partners -->
             <div>
-                <h2 class="text-2xl font-black text-brand-navy mb-8 text-center" data-i18n="partnersTitle">OUR PARTNERS</h2>
+                <h2 class="text-2xl font-black text-brand-navy mb-10 text-center tracking-wider" data-i18n="partnersTitle" data-aos="fade-up">OUR PARTNERS</h2>
                 <div class="flex flex-wrap justify-center gap-4" id="partners-list">
                     <!-- JS Injected -->
                 </div>
@@ -461,19 +534,17 @@
         </div>
     </section>
 
-    <!-- 11. LOCATION / CONTACT (Dedicated Professional Section) -->
+    <!-- 11. LOCATION / CONTACT -->
     <section id="location" class="py-16 bg-brand-navy text-white border-t border-gray-900">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start text-sm">
-                
-                <!-- Brand Info -->
-                <div class="lg:col-span-1">
-                    <h4 class="font-header font-black text-xl mb-4 tracking-wider" data-i18n="brandName">SAUDI BOILERS</h4>
+                <!-- Content columns with staggered entry -->
+                <div class="lg:col-span-1" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="font-header font-black text-xl mb-4 tracking-wider">SAUDI BOILERS</h4>
                     <p class="text-gray-400 leading-relaxed mb-4" data-i18n="footerDesc">The leading specialized boiler maintenance company in Saudi Arabia. Providing 24/7 support and certified engineering solutions.</p>
                 </div>
 
-                <!-- Head Office -->
-                <div>
+                <div data-aos="fade-up" data-aos-delay="200">
                     <h5 class="font-bold text-brand-orange text-xs uppercase tracking-widest mb-4" data-i18n="footerHeadOffice">Head Office</h5>
                     <div class="flex gap-3 text-gray-300">
                         <i class="fa-solid fa-location-dot mt-1 text-gray-500"></i>
@@ -485,24 +556,22 @@
                     </div>
                 </div>
 
-                <!-- Contact Details -->
-                <div>
+                <div data-aos="fade-up" data-aos-delay="300">
                     <h5 class="font-bold text-brand-orange text-xs uppercase tracking-widest mb-4" data-i18n="footerConnect">Connect</h5>
                     <ul class="space-y-3 text-gray-300">
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-gray-500"></i> +966 13 867 0307</li>
-                        <li class="flex items-center gap-3"><i class="fa-solid fa-fax text-gray-500"></i> +966 13 867 0309</li>
+                        <li class="flex items-center gap-3 hover:text-white transition"><i class="fa-solid fa-phone text-gray-500"></i> +966 13 867 0307</li>
+                        <li class="flex items-center gap-3 hover:text-white transition"><i class="fa-solid fa-fax text-gray-500"></i> +966 13 867 0309</li>
                         <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-gray-500"></i> <a href="mailto:info@saudiboiler.com" class="hover:text-white transition">info@saudiboiler.com</a></li>
                     </ul>
                 </div>
 
-                <!-- Digital/Social -->
-                <div>
+                <div data-aos="fade-up" data-aos-delay="400">
                     <h5 class="font-bold text-brand-orange text-xs uppercase tracking-widest mb-4" data-i18n="footerDigital">Digital</h5>
                     <ul class="space-y-3 text-gray-300">
                         <li class="flex items-center gap-3"><i class="fa-solid fa-globe text-gray-500"></i> <a href="http://www.saudiboiler.com" target="_blank" class="hover:text-white transition">www.saudiboiler.com</a></li>
-                        <li class="flex gap-4 mt-2">
-                            <a href="#" class="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#" class="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <li class="flex gap-4 mt-4">
+                            <a href="#" class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 hover:-translate-y-1"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-all duration-300 hover:-translate-y-1"><i class="fa-brands fa-twitter"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -511,7 +580,7 @@
     </section>
 
     <!-- FOOTER (Single Line Bottom) -->
-    <footer class="bg-[#0b1120] text-gray-600 py-4 text-[11px] font-bold uppercase tracking-wider border-t border-gray-800">
+    <footer class="bg-[#0b1120] text-gray-600 py-6 text-[11px] font-bold uppercase tracking-wider border-t border-gray-800/50">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6 text-center">
             <span data-i18n="copyRight">&copy; 2024 Saudi Boilers. All Rights Reserved.</span>
             <span class="hidden md:inline text-gray-800">|</span>
@@ -526,7 +595,14 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // Init AOS with more premium settings
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50,
+            delay: 0,
+        });
 
         // Scroll Handling for Nav
         window.addEventListener('scroll', () => {
@@ -538,7 +614,7 @@
             }
         });
 
-        // Data Objects with Bilingual Support
+        // Data Objects
         const vendorCodes = [
             { nameEn: "SAUDI ARAMCO", nameAr: "أرامكو السعودية", code: "10051317" },
             { nameEn: "SEC (ELECTRICITY)", nameAr: "الشركة السعودية للكهرباء", code: "2005480" },
@@ -595,48 +671,25 @@
         ];
 
         const clients = [
-            { en: "TASNEE", ar: "التصنيع" },
-            { en: "LUBEREF", ar: "لوبريف" },
-            { en: "ESTEDAMA", ar: "استدامة" },
-            { en: "SAUDI ARAMCO", ar: "أرامكو السعودية" },
-            { en: "MEPCO", ar: "ميبكو" },
-            { en: "MAADEN", ar: "معادن" },
-            { en: "AL-RASHED STEEL", ar: "الراشد للحديد" },
-            { en: "SSP", ar: "أنابيب السعودية" },
-            { en: "FEEDCO", ar: "فيدكو" },
-            { en: "AL KIFAH PAPER", ar: "الكفاح للورق" },
-            { en: "NOZOLY", ar: "نزلي" },
-            { en: "RIYADH METRO", ar: "قطار الرياض" },
-            { en: "GULF BUILDER", ar: "بناء الخليج" },
-            { en: "NATPET", ar: "ناتبت" },
-            { en: "FAST", ar: "فاست" },
-            { en: "TSM ARABIA", ar: "تي إس إم العربية" },
-            { en: "GSP", ar: "جي إس بي" },
-            { en: "BELL HELMETS", ar: "بيل هيلمت" },
-            { en: "HENKEL", ar: "هنكل" },
-            { en: "DELMON", ar: "دلمون" },
-            { en: "ACCIONA", ar: "أكسيونا" },
-            { en: "TAWZEA", ar: "توزيع" },
-            { en: "REXAM", ar: "ريكسام" },
-            { en: "SATORP", ar: "ساتورب" }
+            { en: "TASNEE", ar: "التصنيع" }, { en: "LUBEREF", ar: "لوبريف" }, { en: "ESTEDAMA", ar: "استدامة" },
+            { en: "SAUDI ARAMCO", ar: "أرامكو السعودية" }, { en: "MEPCO", ar: "ميبكو" }, { en: "MAADEN", ar: "معادن" },
+            { en: "AL-RASHED STEEL", ar: "الراشد للحديد" }, { en: "SSP", ar: "أنابيب السعودية" }, { en: "FEEDCO", ar: "فيدكو" },
+            { en: "AL KIFAH PAPER", ar: "الكفاح للورق" }, { en: "NOZOLY", ar: "نزلي" }, { en: "RIYADH METRO", ar: "قطار الرياض" },
+            { en: "GULF BUILDER", ar: "بناء الخليج" }, { en: "NATPET", ar: "ناتبت" }, { en: "FAST", ar: "فاست" },
+            { en: "TSM ARABIA", ar: "تي إس إم العربية" }, { en: "GSP", ar: "جي إس بي" }, { en: "BELL HELMETS", ar: "بيل هيلمت" },
+            { en: "HENKEL", ar: "هنكل" }, { en: "DELMON", ar: "دلمون" }, { en: "ACCIONA", ar: "أكسيونا" },
+            { en: "TAWZEA", ar: "توزيع" }, { en: "REXAM", ar: "ريكسام" }, { en: "SATORP", ar: "ساتورب" }
         ];
 
         const partners = [
-            { en: "PETROSAL", ar: "بتروسال" },
-            { en: "SALAMAH CONSULTING", ar: "استشارات سلامة" },
-            { en: "IMDAD STEEL", ar: "إمداد للحديد" },
-            { en: "EPC BOILER", ar: "إي بي سي للمراجل" },
-            { en: "CANNON BONO ENERGIA", ar: "كانون بونو للطاقة" },
-            { en: "POWERSPEX", ar: "باورسبكس" },
-            { en: "I.VAR INDUSTRY", ar: "آي فار للصناعة" },
-            { en: "FIVES", ar: "فايفز" },
-            { en: "MARTECH BOILER", ar: "مارتك للمراجل" },
-            { en: "PPIC", ar: "بي بي آي سي" },
-            { en: "AKKAYA BOILERS", ar: "أكايا للمراجل" },
-            { en: "MADAS", ar: "ماداس" }
+            { en: "PETROSAL", ar: "بتروسال" }, { en: "SALAMAH CONSULTING", ar: "استشارات سلامة" },
+            { en: "IMDAD STEEL", ar: "إمداد للحديد" }, { en: "EPC BOILER", ar: "إي بي سي للمراجل" },
+            { en: "CANNON BONO ENERGIA", ar: "كانون بونو للطاقة" }, { en: "POWERSPEX", ar: "باورسبكس" },
+            { en: "I.VAR INDUSTRY", ar: "آي فار للصناعة" }, { en: "FIVES", ar: "فايفز" },
+            { en: "MARTECH BOILER", ar: "مارتك للمراجل" }, { en: "PPIC", ar: "بي بي آي سي" },
+            { en: "AKKAYA BOILERS", ar: "أكايا للمراجل" }, { en: "MADAS", ar: "ماداس" }
         ];
 
-        // Language Toggle Logic
         const data = {
             en: {
                 brandName: "SAUDI BOILERS",
@@ -727,41 +780,43 @@
         let currentLang = 'en';
 
         function renderContent(lang) {
-            // Vendors
-            document.getElementById('vendor-grid').innerHTML = vendorCodes.map(v => `
-                <div class="bg-white/10 border border-white/20 p-4 rounded-sm hover:bg-white/20 transition">
-                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">${lang === 'en' ? v.nameEn : v.nameAr}</div>
-                    <div class="text-lg font-mono font-bold text-brand-orange">${v.code}</div>
+            // Vendors with Staggered Animation
+            document.getElementById('vendor-grid').innerHTML = vendorCodes.map((v, i) => `
+                <div class="vendor-item bg-white/10 border border-white/20 p-6 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="${i * 50}">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-2 group-hover:text-white transition-colors">${lang === 'en' ? v.nameEn : v.nameAr}</div>
+                    <div class="text-lg font-mono font-bold text-brand-orange group-hover:scale-105 transition-transform origin-left">${v.code}</div>
                 </div>
             `).join('');
 
-            // Capabilities
-            document.getElementById('capabilities-grid').innerHTML = capabilities.map(c => `
-                <div class="tech-item hover:bg-brand-navy group transition cursor-default">
-                    <i class="fa-solid fa-angle-right text-brand-orange mt-1 ${lang === 'ar' ? 'rotate-180' : ''}"></i>
-                    <span class="text-sm font-medium text-gray-700 group-hover:text-white">${lang === 'en' ? c.en : c.ar}</span>
+            // Capabilities with Staggered Animation
+            document.getElementById('capabilities-grid').innerHTML = capabilities.map((c, i) => `
+                <div class="tech-item hover:bg-brand-navy group transition-all duration-300 cursor-default border-b border-r border-gray-100 hover:z-10 hover:shadow-xl" data-aos="fade-up" data-aos-delay="${i * 30}">
+                    <div class="w-8 h-8 rounded-full bg-brand-light flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-colors shrink-0">
+                        <i class="fa-solid fa-angle-right text-xs ${lang === 'ar' ? 'rotate-180' : ''}"></i>
+                    </div>
+                    <span class="text-sm font-medium text-gray-700 group-hover:text-white transition-colors">${lang === 'en' ? c.en : c.ar}</span>
                 </div>
             `).join('');
 
-            // Projects
-            document.getElementById('project-list').innerHTML = projects.map(p => `
-                <tr>
-                    <td><span class="bg-brand-light text-brand-navy px-2 py-1 rounded text-xs font-bold">${p.year}</span></td>
-                    <td class="font-medium">${lang === 'en' ? p.scopeEn : p.scopeAr}</td>
-                    <td>${lang === 'en' ? p.clientEn : p.clientAr}</td>
+            // Projects Rows with Fade In
+            document.getElementById('project-list').innerHTML = projects.map((p, i) => `
+                <tr class="group hover:bg-brand-light/30 transition-colors" data-aos="fade-up" data-aos-delay="${i * 50}">
+                    <td class="border-b border-gray-100 py-4 px-5"><span class="bg-brand-light text-brand-navy px-3 py-1 rounded-full text-xs font-bold border border-brand-border group-hover:border-brand-orange transition-colors">${p.year}</span></td>
+                    <td class="border-b border-gray-100 py-4 px-5 font-medium text-gray-700 group-hover:text-brand-navy transition-colors">${lang === 'en' ? p.scopeEn : p.scopeAr}</td>
+                    <td class="border-b border-gray-100 py-4 px-5 text-gray-500 text-sm font-mono">${lang === 'en' ? p.clientEn : p.clientAr}</td>
                 </tr>
             `).join('');
 
-            // Clients
-            document.getElementById('clients-list').innerHTML = clients.map(c => `
-                <div class="bg-brand-light px-4 py-3 rounded-sm text-xs font-bold text-brand-navy border border-brand-border hover:bg-brand-navy hover:text-white transition cursor-default">
+            // Clients with Staggered Pop
+            document.getElementById('clients-list').innerHTML = clients.map((c, i) => `
+                <div class="bg-brand-light px-6 py-3 rounded-full text-xs font-bold text-brand-navy border border-brand-border hover:bg-brand-navy hover:text-white hover:border-brand-navy transition-all duration-300 cursor-default transform hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="${i * 30}">
                     ${lang === 'en' ? c.en : c.ar}
                 </div>
             `).join('');
 
-            // Partners
-            document.getElementById('partners-list').innerHTML = partners.map(p => `
-                <div class="bg-white px-4 py-3 rounded-sm text-xs font-bold text-gray-600 border border-brand-border hover:border-brand-orange transition cursor-default">
+            // Partners with Staggered Pop
+            document.getElementById('partners-list').innerHTML = partners.map((p, i) => `
+                <div class="bg-white px-6 py-3 rounded-full text-xs font-bold text-gray-600 border border-brand-border hover:border-brand-orange hover:text-brand-orange transition-all duration-300 cursor-default transform hover:-translate-y-1 hover:shadow-lg" data-aos="zoom-in" data-aos-delay="${i * 30}">
                     ${lang === 'en' ? p.en : p.ar}
                 </div>
             `).join('');
