@@ -3,848 +3,701 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saudi Boilers - Industrial Excellence</title>
+    <title>Saudi Boilers - Company Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&family=Manrope:wght@300;400;500;700;800&family=Cairo:wght@300;400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Fonts: Archivo for strong headings, Inter for clean reading -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        header: ['"Oswald"', 'sans-serif'],
-                        body: ['"Manrope"', 'sans-serif'],
+                        header: ['"Archivo"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
                         arabic: ['"Cairo"', 'sans-serif'],
-                        mono: ['"Share Tech Mono"', 'monospace'],
                     },
                     colors: {
                         brand: {
-                            red: '#EF4623', // The specific Orange/Red from image
-                            dark: '#0B0F19', 
-                            navy: '#161F30',
-                            light: '#F8FAFC',
-                            gray: '#E2E8F0',
-                            gold: '#D97706'
+                            orange: '#EF4623', 
+                            navy: '#0F172A',
+                            slate: '#334155',
+                            light: '#F1F5F9',
+                            border: '#E2E8F0'
                         }
                     },
                     boxShadow: {
-                        'soft': '0 20px 40px -10px rgba(0, 0, 0, 0.05)',
-                        'glow': '0 0 20px rgba(239, 70, 35, 0.3)',
-                        'neon': '0 0 10px rgba(239, 70, 35, 0.6), 0 0 20px rgba(239, 70, 35, 0.4)',
-                        'premium': '0 30px 60px -12px rgba(0, 0, 0, 0.25)',
-                    },
-                    animation: {
-                        'marquee': 'marquee 60s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
-                        }
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'floating': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Base & Typography */
-        body { font-family: 'Manrope', sans-serif; overflow-x: hidden; cursor: default; background-color: #FFFFFF; color: #1e293b; }
+        /* Corporate Profile Styles */
+        body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; color: #334155; line-height: 1.6; }
+        
+        /* Typography System */
+        h1, h2, h3, h4, h5 { font-family: 'Archivo', sans-serif; color: #0F172A; text-transform: uppercase; letter-spacing: -0.02em; }
         
         html[lang="ar"] body { font-family: 'Cairo', sans-serif; }
-        html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 { font-family: 'Cairo', sans-serif; font-weight: 900; }
-        h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        html[lang="ar"] h1, html[lang="ar"] h2 { font-family: 'Cairo', sans-serif; letter-spacing: 0; }
 
-        /* Navbar Glass */
-        .nav-glass {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        /* Section Dividers */
+        .section-divider {
+            width: 60px; height: 4px; background: #EF4623; margin-top: 1rem; margin-bottom: 2rem;
         }
 
-        /* Hero Video Background */
-        .hero-video-container {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;
-        }
-        .hero-video-container video {
-            min-width: 100%; min-height: 100%; width: auto; height: auto;
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            object-fit: cover; filter: brightness(0.4) contrast(1.1);
-        }
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-            background: linear-gradient(135deg, rgba(11,15,25,0.9) 0%, rgba(11,15,25,0.6) 100%);
-        }
-
-        /* Marquee Scroll */
-        .marquee-container { overflow: hidden; white-space: nowrap; position: relative; }
-        .marquee-content { display: inline-flex; animation: marquee 60s linear infinite; }
-        html[dir="rtl"] .marquee-content { animation-direction: reverse; }
-        .marquee-container::before, .marquee-container::after {
-            content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2;
-        }
-        .marquee-container::before { left: 0; background: linear-gradient(to right, white, transparent); }
-        .marquee-container::after { right: 0; background: linear-gradient(to left, white, transparent); }
-
-        /* Buttons */
-        .btn-primary {
-            background-color: #EF4623; color: white; font-weight: 700; letter-spacing: 0.05em;
-            padding: 14px 36px; border-radius: 4px; transition: all 0.3s;
-            box-shadow: 0 10px 20px -10px rgba(239, 70, 35, 0.5);
-            position: relative; overflow: hidden;
-        }
-        .btn-primary::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        .btn-primary:hover::after { left: 100%; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -10px rgba(239, 70, 35, 0.6); }
-
-        /* Product Card */
-        .product-card {
-            position: relative; overflow: hidden; border-radius: 16px;
-            background: white; border: 1px solid #E2E8F0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%; display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
-            border-color: #EF4623;
-        }
-        .product-header {
-            padding: 2rem 2rem 1rem;
-            background: linear-gradient(to bottom right, #f8fafc, #fff);
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .product-icon {
-            width: 60px; height: 60px;
-            background: #fff; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1rem; color: #EF4623; font-size: 1.5rem;
-        }
-
-        /* Stats Bar & Buttons Integration */
-        .stats-action-bar {
-            display: grid;
-            grid-template-columns: 1fr 1fr auto 1fr 1fr;
-            gap: 0;
-            align-items: center;
-            background: rgba(11, 15, 25, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            border-right: 1px solid rgba(255,255,255,0.1);
-            color: white;
-        }
-        .stat-item:last-child { border-right: none; }
-        .action-group {
-            display: flex;
-            padding: 0;
-        }
-        .action-btn {
-            padding: 24px 40px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
-        .btn-orange { background: #EF4623; color: white; }
-        .btn-orange:hover { background: #d63918; }
-        .btn-dark { background: #1F2937; color: white; border-left: 1px solid #374151; border-right: 1px solid #374151; }
-        .btn-dark:hover { background: #111827; }
-
-        /* Responsive adjustments for stats bar */
-        @media (max-width: 1024px) {
-            .stats-action-bar { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
-            .action-group { grid-column: span 2; order: -1; width: 100%; }
-            .action-btn { width: 50%; text-align: center; padding: 20px; }
-            .stat-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
-        }
-
-        /* Dark Card Style */
-        .dark-card {
-            background: #0B0F19;
-            border-radius: 8px;
-            padding: 40px;
+        /* Hero Section - UPDATED */
+        .hero-section {
             position: relative;
+            height: 100vh; /* Full viewport height */
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background-color: #0F172A; /* Fallback color */
         }
-        .dark-card::before {
-            content: '';
+
+        /* Video Background */
+        .hero-video-container {
             position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: #EF4623;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
         }
+        
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4); /* Darken video for text readability */
+        }
+
+        .hero-content {
+            position: relative; 
+            z-index: 10;
+            width: 100%;
+            padding-top: 80px; /* Compensate for fixed header visual balance */
+        }
+
+        /* Advanced Navigation Styles */
+        #main-nav {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Scrolled State */
+        #main-nav.nav-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        /* Link Colors & Effects */
+        .nav-link {
+            position: relative;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+        
+        /* Initial State (Transparent BG) */
+        #main-nav:not(.nav-scrolled) .nav-link { color: rgba(255,255,255,0.8); }
+        #main-nav:not(.nav-scrolled) .nav-link:hover { color: #FFFFFF; }
+        #main-nav:not(.nav-scrolled) .brand-text { color: white; }
+        #main-nav:not(.nav-scrolled) .brand-sub { color: #EF4623; opacity: 0.9; }
+        #main-nav:not(.nav-scrolled) .logo-img { filter: brightness(0) invert(1); } /* Force White Logo */
+        #main-nav:not(.nav-scrolled) .lang-btn { color: white; border-color: rgba(255,255,255,0.3); }
+
+        /* Scrolled State (White BG) */
+        #main-nav.nav-scrolled .nav-link { color: #334155; }
+        #main-nav.nav-scrolled .nav-link:hover { color: #EF4623; }
+        #main-nav.nav-scrolled .brand-text { color: #0F172A; }
+        #main-nav.nav-scrolled .brand-sub { color: #EF4623; }
+        #main-nav.nav-scrolled .logo-img { filter: none; } /* Original Colors */
+        #main-nav.nav-scrolled .lang-btn { color: #0F172A; border-color: #E2E8F0; }
+        #main-nav.nav-scrolled .mobile-toggle { color: #0F172A; }
+        #main-nav:not(.nav-scrolled) .mobile-toggle { color: white; }
+
+        /* Hover Underline Animation */
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -6px; left: 0; background-color: #EF4623;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Profile Cards */
+        .profile-card {
+            background: white; border: 1px solid #E2E8F0; padding: 2rem;
+            transition: all 0.3s ease; border-left: 4px solid transparent;
+        }
+        .profile-card:hover {
+            border-left-color: #EF4623; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transform: translateY(-5px);
+        }
+
+        /* Tech Grid (Capabilities) */
+        .tech-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: #E2E8F0;
+        }
+        .tech-item {
+            background: white; padding: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
+        }
+        
+        /* Project Table */
+        .project-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .project-table th { background: #0F172A; color: white; padding: 12px 16px; text-align: left; font-family: 'Archivo'; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+        .project-table td { border-bottom: 1px solid #E2E8F0; padding: 12px 16px; color: #475569; }
+        .project-table tr:hover td { background: #F8FAFC; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 nav-glass transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-24 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <img src="https://saudiboiler.com/wp-content/uploads/2020/08/logo.png" alt="Saudi Boilers" class="h-12" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
-                    <div id="logo-text" style="display:none;" class="flex flex-col leading-none">
-                        <span class="text-2xl font-header font-bold text-brand-dark tracking-tight" data-i18n="brandName">SAUDI BOILERS</span>
-                        <span class="text-[9px] font-body font-bold text-brand-red tracking-[0.3em] uppercase" data-i18n="maintenanceCo">Maintenance Co.</span>
-                    </div>
+    <!-- Advanced Unique Navigation -->
+    <nav id="main-nav" class="fixed top-0 left-0 w-full z-50 py-6">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            
+            <!-- Dynamic Logo -->
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <!-- Logo Image changes filter based on scroll state via CSS -->
+                <img src="https://saudiboiler.com/wp-content/uploads/2020/08/logo.png" alt="SB" class="logo-img h-10 w-auto transition-all duration-300" onerror="this.style.display='none'">
+                
+                <!-- Fallback Icon if image fails -->
+                <i class="fa-solid fa-industry text-2xl logo-icon" id="fallback-logo" style="display:none"></i>
+                
+                <div class="leading-tight">
+                    <span class="brand-text block text-lg font-header font-black tracking-tight transition-colors duration-300" data-i18n="brandName">SAUDI BOILERS</span>
+                    <span class="brand-sub block text-[9px] font-bold tracking-[0.25em] uppercase transition-colors duration-300">Maintenance Co.</span>
                 </div>
             </div>
 
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center gap-8 text-xs font-bold text-brand-dark tracking-widest uppercase">
-                <a href="#home" class="hover:text-brand-red transition relative group">
-                    <span data-i18n="navOverview">HOME</span>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#products" class="hover:text-brand-red transition relative group">
-                    <span data-i18n="navProducts">PRODUCTS</span>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#services" class="hover:text-brand-red transition relative group">
-                    <span data-i18n="navServices">SERVICES</span>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#team" class="hover:text-brand-red transition relative group">
-                    <span data-i18n="navTeam">TEAM</span>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#projects" class="hover:text-brand-red transition relative group">
-                    <span data-i18n="navProjects">TRACK RECORD</span>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-red transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#contact" class="btn-primary text-white rounded-sm" data-i18n="btnContact">CONTACT US</a>
+            <!-- Desktop Menu (No Contact Option) -->
+            <div class="hidden lg:flex items-center gap-8">
+                <div class="flex items-center gap-8">
+                    <a href="#about" class="nav-link" data-i18n="navGeneral">GENERAL INFO</a>
+                    <a href="#vendors" class="nav-link" data-i18n="navVendors">VENDORS</a>
+                    <a href="#services" class="nav-link" data-i18n="navServices">SERVICES</a>
+                    <a href="#capabilities" class="nav-link" data-i18n="navCapabilities">CAPABILITIES</a>
+                    <a href="#projects" class="nav-link" data-i18n="navProjects">PROJECTS</a>
+                    <a href="#specialized" class="nav-link" data-i18n="navSpecialized">SPECIALIZED</a>
+                    <a href="#team" class="nav-link" data-i18n="navTeam">TEAM</a>
+                </div>
                 
-                <div class="h-6 w-px bg-gray-200 mx-2"></div>
-                
-                <button id="langToggle" class="text-brand-red hover:text-brand-dark transition font-bold text-sm">AR</button>
+                <!-- Language Toggle -->
+                <button id="langToggle" class="lang-btn font-bold border px-3 py-1 rounded-sm text-xs hover:bg-white hover:text-brand-navy transition-all duration-300">AR</button>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button class="lg:hidden text-2xl text-brand-dark" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <button class="lg:hidden text-2xl mobile-toggle transition-colors duration-300" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 p-6 space-y-4 shadow-xl">
-            <a href="#home" class="block font-bold text-brand-dark" data-i18n="navOverview">HOME</a>
-            <a href="#products" class="block font-bold text-brand-dark" data-i18n="navProducts">PRODUCTS</a>
-            <a href="#services" class="block font-bold text-brand-dark" data-i18n="navServices">SERVICES</a>
-            <a href="#team" class="block font-bold text-brand-dark" data-i18n="navTeam">TEAM</a>
-            <a href="#projects" class="block font-bold text-brand-dark" data-i18n="navProjects">PROJECTS</a>
-            <a href="#contact" class="block font-bold text-brand-red" data-i18n="btnContact">CONTACT</a>
-            <button id="langToggleMobile" class="block w-full text-left font-bold text-gray-500 mt-4 pt-4 border-t">SWITCH LANGUAGE</button>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 backdrop-blur-xl border-t border-brand-border p-6 shadow-2xl absolute w-full left-0 top-full h-screen overflow-y-auto pb-32 transition-all">
+            <div class="flex flex-col gap-6 text-sm font-bold text-brand-navy">
+                <a href="#about" class="py-2 border-b border-gray-100" data-i18n="navGeneral">GENERAL INFO</a>
+                <a href="#vendors" class="py-2 border-b border-gray-100" data-i18n="navVendors">VENDORS</a>
+                <a href="#services" class="py-2 border-b border-gray-100" data-i18n="navServices">SERVICES</a>
+                <a href="#capabilities" class="py-2 border-b border-gray-100" data-i18n="navCapabilities">CAPABILITIES</a>
+                <a href="#projects" class="py-2 border-b border-gray-100" data-i18n="navProjects">PROJECTS</a>
+                <a href="#team" class="py-2 border-b border-gray-100" data-i18n="navTeam">TEAM</a>
+                <button id="langToggleMobile" class="text-left text-brand-orange py-2">SWITCH LANGUAGE</button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section with Video Background -->
-    <section id="home" class="min-h-screen flex flex-col relative overflow-hidden">
+    <!-- 1. HERO SECTION -->
+    <section id="home" class="hero-section">
         <!-- Video Background -->
         <div class="hero-video-container">
             <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1565439368560-6e469d76e271?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
+                <!-- Industrial Boiler / Factory Video -->
                 <source src="https://v4.cdnpk.net/videvo_files/video/free/2019-11/large_watermarked/190301_1_25_11_preview.mp4" type="video/mp4">
             </video>
-            <div class="hero-overlay"></div>
         </div>
 
-        <!-- Content Center -->
-        <div class="flex-grow flex items-center justify-center text-center px-6 relative z-10 text-white">
-            <div class="max-w-6xl" data-aos="fade-up" data-aos-duration="1200">
-                <div class="flex justify-center items-center gap-4 mb-8">
-                    <div class="h-px w-12 bg-brand-red"></div>
-                    <span class="text-xs font-bold tracking-[0.3em] uppercase text-brand-red" data-i18n="profileYear">ESTABLISHED 2012</span>
-                    <div class="h-px w-12 bg-brand-red"></div>
-                </div>
-                
-                <h1 class="text-6xl lg:text-9xl font-medium mb-8 leading-tight drop-shadow-2xl" data-i18n="heroTitle">
-                    INDUSTRIAL<br>
-                    <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">EXCELLENCE</span>
-                </h1>
-                
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-12" data-i18n="heroDesc">
-                    "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. The Kingdom's premier specialist in steam generation and thermal engineering."
-                </p>
-                
-                <!-- Vision & Mission -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
-                        <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
-                            <i class="fa-solid fa-eye"></i> <span data-i18n="visionTitle">OUR VISION</span>
-                        </h4>
-                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="visionDesc">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
+        <div class="hero-content px-6">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-8" data-aos="fade-up">
+                    <div class="inline-block bg-brand-orange text-white text-[10px] font-bold tracking-[0.2em] px-3 py-1 mb-6 uppercase rounded-sm">
+                        <span data-i18n="estBadge">Established 2012 | Kingdom of Saudi Arabia</span>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded border border-white/20 text-left hover:bg-white/20 transition">
-                        <h4 class="text-brand-red font-bold text-sm mb-2 tracking-widest flex items-center gap-2">
-                            <i class="fa-solid fa-bullseye"></i> <span data-i18n="missionTitle">OUR MISSION</span>
-                        </h4>
-                        <p class="text-sm text-gray-300 leading-relaxed" data-i18n="missionDesc">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Advanced Stats & Action Bar -->
-        <div class="stats-action-bar relative z-20">
-            <div class="stat-item">
-                <p class="text-3xl font-header font-bold text-brand-red count-up" data-target="30">0</p>
-                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statExp">YEARS EXPERIENCE</p>
-            </div>
-            <div class="stat-item">
-                <p class="text-3xl font-header font-bold text-white count-up" data-target="100">0</p>
-                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statLocal">% SAUDI OWNED</p>
-            </div>
-            
-            <div class="action-group">
-                <a href="#products" class="action-btn btn-orange" data-i18n="btnProducts">OUR PRODUCTS</a>
-                <a href="#vendor-codes" class="action-btn btn-dark" data-i18n="btnVendor">VENDOR CODES</a>
-            </div>
-
-            <div class="stat-item">
-                <p class="text-3xl font-header font-bold text-white">24/7</p>
-                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statSupport">SUPPORT</p>
-            </div>
-            <div class="stat-item">
-                <p class="text-3xl font-header font-bold text-white">ASME</p>
-                <p class="text-[10px] text-gray-400 font-bold tracking-widest uppercase" data-i18n="statCode">CODE COMPLIANT</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCT SHOWCASE -->
-    <section id="products" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="sectionProductsSub">ADVANCED SOLUTIONS</span>
-                <h2 class="text-4xl lg:text-5xl font-bold text-brand-dark mt-2" data-i18n="sectionProducts">INDUSTRIAL BOILER SYSTEMS</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="fa-solid fa-fire-flame-curved"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodFireTitle">FIRETUBE BOILERS</h3>
-                    </div>
-                    <div class="p-8 pt-4 flex-grow flex flex-col justify-between">
-                        <div>
-                            <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodFireDesc">
-                                Robust steam and hot water generation for industrial process applications. Designed for reliability and ease of maintenance.
-                            </p>
-                            <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 3-Pass Wet Back Design</li>
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Up to 30 Ton/hr Capacity</li>
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Low NOx Burners</li>
-                            </ul>
-                        </div>
-                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition w-max">REQUEST SPECS</a>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="fa-solid fa-water"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodWaterTitle">WATERTUBE BOILERS</h3>
-                    </div>
-                    <div class="p-8 pt-4 flex-grow flex flex-col justify-between">
-                         <div>
-                            <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodWaterDesc">
-                                High-capacity, high-pressure solutions for power generation, petrochemical, and large-scale utility applications.
-                            </p>
-                            <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Superheated Steam</li>
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Rapid Response Time</li>
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Custom Configurable</li>
-                            </ul>
-                        </div>
-                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition w-max">REQUEST SPECS</a>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="product-header">
-                        <div class="product-icon">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-brand-dark" data-i18n="prodElecTitle">ELECTRIC BOILERS</h3>
-                    </div>
-                    <div class="p-8 pt-4 flex-grow flex flex-col justify-between">
-                        <div>
-                            <p class="text-sm text-gray-500 leading-relaxed mb-6" data-i18n="prodElecDesc">
-                                Compact, clean, and efficient steam generation for specialized environments requiring zero footprint emissions.
-                            </p>
-                            <ul class="space-y-3 text-xs font-bold text-gray-400 uppercase tracking-wide mb-8">
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> 99% Thermal Efficiency</li>
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> No Flue Stack Required</li>
-                                <li class="flex items-center gap-3"><i class="fa-solid fa-check text-brand-red"></i> Silent Operation</li>
-                            </ul>
-                        </div>
-                        <a href="#contact" class="text-brand-red font-bold text-xs tracking-widest border-b-2 border-brand-red pb-1 hover:text-brand-dark transition w-max">REQUEST SPECS</a>
+                    
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8">
+                        OPTIMIZED SOLUTIONS<br>
+                        <span class="text-brand-orange">FOR INDUSTRIAL BOILERS</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-300 max-w-2xl mb-10 font-light leading-relaxed border-l-4 border-gray-500 pl-6" data-i18n="heroDesc">
+                        Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disaster, shut-down, testing, or planned downtime, we have the solution.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#services" class="bg-white text-brand-navy font-bold px-8 py-4 text-sm tracking-widest hover:bg-gray-100 transition text-center min-w-[200px]" data-i18n="btnServices">OUR SERVICES</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vendor Codes (Clean Grid) -->
-    <section id="vendor-codes" class="py-24 bg-brand-light">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="preQual">Trusted Partners</span>
-                <h2 class="text-4xl font-bold text-brand-dark mt-2" data-i18n="sectionVendor">OFFICIAL VENDOR REGISTRATIONS</h2>
+    <!-- 2. GENERAL INFORMATION (About) -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <span class="text-xs font-bold text-gray-400 tracking-widest uppercase block mb-2" data-i18n="sectionGeneral">GENERAL INFORMATION</span>
+                    <h2 class="text-4xl font-black text-brand-navy mb-8 leading-tight" data-i18n="aboutTitle">BOILER SPECIALIST<br>COMPANY</h2>
+                    
+                    <div class="prose text-gray-600 mb-8 text-justify leading-relaxed space-y-4">
+                        <p data-i18n="genInfo1">
+                            SAUDI BOILERS is a Boiler Specialist Company providing expert boiler services for all types of boilers and conducting preventive maintenance for all types of boilers in all industrial sectors.
+                        </p>
+                        <p data-i18n="genInfo2">
+                            SAUDI BOILERS provides Optimized Solutions to end users through its unique blend of industrial expertise and use of expert resources.
+                        </p>
+                        <p data-i18n="genInfo3">
+                            We have a team of engineers, expert technicians, and professionals inspired to work at their best along with associate companies & partners globally who are experts in their respective domains.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-light p-10 lg:p-12 rounded-sm border border-brand-border" data-aos="fade-left">
+                    <h3 class="text-2xl font-black text-brand-navy mb-8 border-b border-brand-border pb-4" data-i18n="visMisTitle">VISION & MISSION</h3>
+                    <div class="space-y-8">
+                        <div>
+                            <h4 class="font-bold text-brand-orange mb-2 text-sm uppercase tracking-wider">Our Vision</h4>
+                            <p class="text-sm text-gray-600">To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-orange mb-2 text-sm uppercase tracking-wider">Our Mission</h4>
+                            <p class="text-sm text-gray-600">Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="vendor-grid">
+        </div>
+    </section>
+
+    <!-- 3. VENDOR CODES -->
+    <section id="vendors" class="py-16 bg-brand-navy text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4" data-i18n="vendorTitle">OFFICIAL VENDOR CODES</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm">Registered with the Kingdom's most prestigious industrial entities.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="vendor-grid">
                 <!-- JS Injected -->
             </div>
         </div>
     </section>
 
-    <!-- Team Section (Updated Objectives) -->
-    <section id="team" class="py-24 bg-white border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-                <div data-aos="fade-right">
-                    <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="navTeam">OUR TEAM</span>
-                    <h2 class="text-5xl font-bold text-brand-dark mt-2 mb-8" data-i18n="sectionTeam">UNMATCHED EXPERTISE</h2>
-                    
-                    <div class="prose text-gray-500 text-lg leading-relaxed mb-10 space-y-6">
-                        <p data-i18n="teamDesc1">
-                            Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.
-                        </p>
-                        <p data-i18n="teamDesc2">
-                            Proven expertise in thermal design of heat transfer equipment including utility, industrial and packaged boilers, air-cooled, shell & tube, plate & frame, brazed aluminum type heat exchangers, and process fired heaters.
-                        </p>
-                        <div class="p-6 bg-brand-light rounded-lg border-l-4 border-brand-red">
-                            <p class="font-bold text-brand-dark text-sm mb-2" data-i18n="teamEngTitle">LICENSED ENGINEERING DEPARTMENT</p>
-                            <p class="text-sm" data-i18n="teamEngDesc">Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels to ASME standards.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Updated Dark Card for Objectives -->
-                <div data-aos="fade-left">
-                    <div class="dark-card text-white h-full flex flex-col justify-center">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-red rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
-                        
-                        <div class="flex items-center gap-4 mb-10">
-                            <i class="fa-solid fa-bullseye text-brand-red text-3xl"></i>
-                            <h4 class="text-3xl font-header font-bold tracking-wide" data-i18n="teamObjectives">CORE OBJECTIVES</h4>
-                        </div>
-                        
-                        <ul class="space-y-6" id="objectives-list">
-                            <!-- JS Injected -->
-                        </ul>
-                    </div>
-                </div>
+    <!-- 4. ENGINEERING & INDUSTRIAL SERVICES -->
+    <section id="services" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <span class="text-xs font-bold text-brand-orange tracking-widest uppercase block mb-2" data-i18n="sectionEng">EXPERTISE</span>
+                <h2 class="text-4xl font-black text-brand-navy" data-i18n="engTitle">ENGINEERING &<br>INDUSTRIAL SERVICES</h2>
+                <div class="section-divider"></div>
             </div>
-        </div>
-    </section>
 
-    <!-- Capabilities -->
-    <section id="capabilities" class="py-24 bg-brand-light">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="navCapabilities">CAPABILITIES</span>
-                <h2 class="text-4xl font-bold text-brand-dark mt-2" data-i18n="sectionCapabilities">TECHNICAL STRENGTH</h2>
-            </div>
-            
-            <div class="bg-white rounded-2xl p-10 shadow-soft border border-gray-100">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-gray-700" id="capabilities-list">
-                    <!-- Injected via JS -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-                <div data-aos="fade-right">
-                    <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="sectionServices">Our Expertise</span>
-                    <h2 class="text-5xl font-bold text-brand-dark mt-2 mb-6" data-i18n="servicesMainTitle">ENGINEERING &<br>INDUSTRIAL SERVICES</h2>
-                    <p class="text-gray-500 leading-relaxed text-lg mb-6" data-i18n="servicesIntro">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-brand-border">
+                    <h3 class="text-xl font-bold text-brand-navy mb-4">Comprehensive Solutions</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
                         Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels. We offer services from boiler surveys, inspections, repairs, and revamp, as well as the design, supply, installation, and commissioning of complete boiler systems.
                     </p>
-                    <p class="text-gray-500 leading-relaxed text-sm" data-i18n="servicesDetail">
-                        Boilers and auxiliaries are designed, manufactured, installed, and maintained to national and international standards such as ASME BPVC Section I, VIII, VI, BS, European and others. Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels.
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels to ASME standards.
                     </p>
                 </div>
-                <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
-                    <div class="p-6 bg-brand-light rounded-2xl hover:bg-brand-dark hover:text-white transition duration-300 group cursor-default">
-                        <i class="fa-solid fa-compass-drafting text-3xl text-brand-red mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2" data-i18n="cardDesignTitle">DESIGN</h4>
-                        <p class="text-xs opacity-70 group-hover:opacity-100" data-i18n="cardDesignDesc">ASME compliant engineering and reverse engineering.</p>
-                    </div>
-                    <div class="p-6 bg-brand-light rounded-2xl hover:bg-brand-dark hover:text-white transition duration-300 group cursor-default mt-8">
-                        <i class="fa-solid fa-industry text-3xl text-brand-red mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2" data-i18n="cardFabTitle">FABRICATION</h4>
-                        <p class="text-xs opacity-70 group-hover:opacity-100" data-i18n="cardFabDesc">Pressure vessels, tanks, and skid mounted systems.</p>
-                    </div>
-                    <div class="p-6 bg-brand-light rounded-2xl hover:bg-brand-dark hover:text-white transition duration-300 group cursor-default">
-                        <i class="fa-solid fa-screwdriver-wrench text-3xl text-brand-red mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2" data-i18n="cardMaintTitle">MAINTENANCE</h4>
-                        <p class="text-xs opacity-70 group-hover:opacity-100" data-i18n="cardMaintDesc">Annual contracts, repairs, and emergency support.</p>
-                    </div>
-                    <div class="p-6 bg-brand-light rounded-2xl hover:bg-brand-dark hover:text-white transition duration-300 group cursor-default mt-8">
-                        <i class="fa-solid fa-microscope text-3xl text-brand-red mb-4"></i>
-                        <h4 class="text-lg font-bold mb-2" data-i18n="cardAnalysisTitle">ANALYSIS</h4>
-                        <p class="text-xs opacity-70 group-hover:opacity-100" data-i18n="cardAnalysisDesc">Root cause failure analysis and efficiency studies.</p>
-                    </div>
+                <div class="bg-white p-8 rounded-sm shadow-sm border border-brand-border">
+                    <h3 class="text-xl font-bold text-brand-navy mb-4">Engineering Consulting</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                        Saudi Boiler provides specialized consulting engineering, supply, installation & rental services based on knowledge-intensive experience. We assist major Saudi industries in providing cost-effective solutions for better, efficient, and reliable continued plant operation.
+                    </p>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        We believe engineering services translate industrial project concepts into real form through successive applications of intellectual inputs, technology transfer, and local engineering capability promotion.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Specialized Services -->
-    <section id="specialized" class="py-24 bg-brand-light">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <span class="text-brand-red font-bold tracking-[0.2em] text-xs uppercase" data-i18n="navSpecialized">SPECIALIZED SERVICES</span>
-                <h2 class="text-4xl font-bold text-brand-dark mt-2" data-i18n="sectionSpecialized">ADVANCED TECHNICAL SOLUTIONS</h2>
+    <!-- 5. OUR TEAM -->
+    <section id="team" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 bg-brand-navy text-white p-10 flex flex-col justify-center">
+                    <h2 class="text-3xl font-black mb-6">OUR EXPERT TEAM</h2>
+                    <p class="text-sm text-gray-300 mb-6 leading-relaxed">
+                        Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.
+                    </p>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Most importantly, Saudi Boilers team works with operations and maintenance entities to protect their investments, and to ensure that the contractors and suppliers meet their commitments.
+                    </p>
+                </div>
+                <div class="lg:col-span-7">
+                    <h3 class="text-xl font-bold text-brand-navy mb-6">Objectives & Competencies</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                            <span class="text-sm text-gray-600">Proven expertise in thermal design of heat transfer equipment (utility, industrial, packaged boilers).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                            <span class="text-sm text-gray-600">Handling heat transfer equipment auxiliaries like refractory engineering and industrial insulation.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                            <span class="text-sm text-gray-600">Spread Engineering Concept in Industrial community in KSA.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand-orange mt-1"></i>
+                            <span class="text-sm text-gray-600">Enhance local engineers' competencies to handle various engineering disciplines.</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            
+        </div>
+    </section>
+
+    <!-- 6. CAPABILITIES -->
+    <section id="capabilities" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <h2 class="text-3xl font-black text-brand-navy">TECHNICAL CAPABILITIES</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="tech-grid rounded-lg overflow-hidden shadow-card" id="capabilities-grid">
+                <!-- JS Injected -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. SPECIALIZED SERVICES (Moved up for flow) -->
+    <section id="specialized" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-brand-orange tracking-widest uppercase">ADVANCED SOLUTIONS</span>
+                <h2 class="text-3xl font-black text-brand-navy mt-2">SPECIALIZED SERVICES</h2>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="100">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specRcaTitle">Root Cause Analysis</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specRcaDesc">Using influence diagram analysis to decide and determine relative contribution of various root cause influences in operating boilers to prevent recurrence.</p>
+                <div class="profile-card">
+                    <h4 class="font-bold text-brand-navy mb-3">Boiler Failure Root Cause Analysis</h4>
+                    <p class="text-xs text-gray-600">Using influence diagram analysis to determine contribution of root cause influences to prevent recurrence.</p>
                 </div>
-                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specInspTitle">Expert Inspection</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specInspDesc">Proper inspection techniques for all types of boiler components to ensure accurate diagnostics of any failure mode for proper remedies and rehabilitation.</p>
+                <div class="profile-card">
+                    <h4 class="font-bold text-brand-navy mb-3">Expert Inspection Services</h4>
+                    <p class="text-xs text-gray-600">Proper inspection techniques for all boiler components to ensure accurate diagnostics and remedies.</p>
                 </div>
-                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="300">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specCircTitle">Circulation Analysis</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specCircDesc">The only team in KSA assessing internal circulation to solve tube overheating. Mitigates reoccurrence of furnace tube failures.</p>
+                <div class="profile-card">
+                    <h4 class="font-bold text-brand-navy mb-3">Boiler Circulation Analysis</h4>
+                    <p class="text-xs text-gray-600">The only team in KSA assessing internal circulation to solve tube overheating and mitigate furnace tube failures.</p>
                 </div>
-                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="400">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specShutdownTitle">Shutdown Management</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specShutdownDesc">Detailed service programs for pressure, auxiliary, and control components to prolong boiler operational life with all safety measures.</p>
+                <div class="profile-card">
+                    <h4 class="font-bold text-brand-navy mb-3">Shutdown Management</h4>
+                    <p class="text-xs text-gray-600">Detailed service programs for pressure, auxiliary, and control components to prolong boiler life.</p>
                 </div>
-                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="500">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specFuelTitle">Fuel Switch Studies</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specFuelDesc">Technical and feasibility studies for switching fuels to meet environmental and economic constraints (e.g., Liquid to Gas).</p>
+                <div class="profile-card">
+                    <h4 class="font-bold text-brand-navy mb-3">Fuel Switch Studies</h4>
+                    <p class="text-xs text-gray-600">Technical and feasibility studies for switching fuels to meet environmental and economic constraints.</p>
                 </div>
-                <div class="spec-card p-8 bg-white rounded-xl" data-aos="fade-up" data-aos-delay="600">
-                    <h4 class="text-xl font-bold text-brand-dark mb-4" data-i18n="specFlueTitle">Flue Gas Analysis</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed" data-i18n="specFlueDesc">On-site exhaust gas emission measurements using calibrated, standard, and certified equipment whenever needed.</p>
+                <div class="profile-card">
+                    <h4 class="font-bold text-brand-navy mb-3">Flue Gas Analysis</h4>
+                    <p class="text-xs text-gray-600">On-site exhaust gas emission measurements using calibrated, standard, and certified equipment.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Clients Marquee -->
-    <section class="py-16 bg-white border-b border-gray-100">
-        <div class="text-center mb-10">
-            <h4 class="text-xl font-bold text-brand-dark" data-i18n="sectionClients">OUR VALUED CLIENTS</h4>
-        </div>
-        <div class="marquee-container">
-            <div class="marquee-content" id="client-marquee">
-                <!-- Logos Injected via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects (Timeline Grid) -->
+    <!-- 7. OUR PROJECTS -->
     <section id="projects" class="py-24 bg-brand-light">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <h2 class="text-4xl font-bold text-brand-dark mb-12" data-i18n="sectionProjects">RECENT PROJECTS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
-                <!-- Injected via JS -->
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-black text-brand-navy mb-8">OUR PROJECTS</h2>
+            <div class="bg-white rounded-sm shadow-sm overflow-hidden overflow-x-auto">
+                <table class="project-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Project Scope</th>
+                            <th>Client / Location</th>
+                        </tr>
+                    </thead>
+                    <tbody id="project-list">
+                        <!-- JS Injected -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-white py-8 px-6 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
-            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                <div class="leading-none text-center md:text-left">
-                    <span class="font-header font-bold text-xl block tracking-wider" data-i18n="brandName">SAUDI BOILERS</span>
-                    <span class="text-[10px] text-brand-red uppercase tracking-[0.2em]" data-i18n="maintenanceCo">MAINTENANCE CO.</span>
+    <!-- 9. & 10. CLIENTS & PARTNERS -->
+    <section id="clients" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Clients -->
+            <div class="mb-20">
+                <h2 class="text-2xl font-black text-brand-navy mb-8 text-center">OUR CLIENTS</h2>
+                <div class="flex flex-wrap justify-center gap-4" id="clients-list">
+                    <!-- JS Injected -->
                 </div>
-                <span class="text-gray-700 hidden md:block text-2xl font-thin">|</span>
-                <p class="text-gray-500 text-xs" data-i18n="footerRights">&copy; 2025 All Rights Reserved.</p>
             </div>
             
-            <div class="flex items-center gap-6">
-                <a href="mailto:info@saudiboiler.com" class="text-gray-400 hover:text-brand-red transition flex items-center gap-2 text-xs font-bold tracking-wider">
-                    <i class="fa-solid fa-envelope"></i> info@saudiboiler.com
-                </a>
-                <div class="flex gap-4">
-                    <a href="#" class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-red hover:text-white transition"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
-                    <a href="#" class="w-8 h-8 rounded bg-white/5 flex items-center justify-center text-gray-400 hover:bg-brand-red hover:text-white transition"><i class="fa-brands fa-twitter text-xs"></i></a>
+            <!-- Partners -->
+            <div>
+                <h2 class="text-2xl font-black text-brand-navy mb-8 text-center">OUR PARTNERS</h2>
+                <div class="flex flex-wrap justify-center gap-4" id="partners-list">
+                    <!-- JS Injected -->
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. LOCATION / CONTACT (Dedicated Professional Section) -->
+    <section id="location" class="py-16 bg-brand-navy text-white border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 items-start text-sm">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <h4 class="font-header font-black text-xl mb-4 tracking-wider">SAUDI BOILERS</h4>
+                    <p class="text-gray-400 leading-relaxed mb-4" data-i18n="footerDesc">The leading specialized boiler maintenance company in Saudi Arabia. Providing 24/7 support and certified engineering solutions.</p>
+                </div>
+
+                <!-- Head Office -->
+                <div>
+                    <h5 class="font-bold text-brand-orange text-xs uppercase tracking-widest mb-4">Head Office</h5>
+                    <div class="flex gap-3 text-gray-300">
+                        <i class="fa-solid fa-location-dot mt-1 text-gray-500"></i>
+                        <div>
+                            <p>Abdullah St. (Dhahran St.) & Prince Humood St.</p>
+                            <p>Al Jarbou Administrative Tower, Office No-904</p>
+                            <p data-i18n="addr">Al Khobar, Saudi Arabia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h5 class="font-bold text-brand-orange text-xs uppercase tracking-widest mb-4">Connect</h5>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-gray-500"></i> +966 13 867 0307</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-fax text-gray-500"></i> +966 13 867 0309</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-gray-500"></i> <a href="mailto:info@saudiboiler.com" class="hover:text-white transition">info@saudiboiler.com</a></li>
+                    </ul>
+                </div>
+
+                <!-- Digital/Social -->
+                <div>
+                    <h5 class="font-bold text-brand-orange text-xs uppercase tracking-widest mb-4">Digital</h5>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-globe text-gray-500"></i> <a href="http://www.saudiboiler.com" target="_blank" class="hover:text-white transition">www.saudiboiler.com</a></li>
+                        <li class="flex gap-4 mt-2">
+                            <a href="#" class="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="h-8 w-8 rounded bg-white/10 flex items-center justify-center hover:bg-brand-orange hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Single Line Bottom) -->
+    <footer class="bg-[#0b1120] text-gray-600 py-4 text-[11px] font-bold uppercase tracking-wider border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-center items-center gap-2 md:gap-6 text-center">
+            <span>&copy; 2024 Saudi Boilers Maintenance Co. All Rights Reserved.</span>
+            <span class="hidden md:inline text-gray-800">|</span>
+            <div class="flex gap-4 md:gap-6">
+                <a href="#about" class="hover:text-brand-orange transition" data-i18n="navGeneral">General Info</a>
+                <a href="#services" class="hover:text-brand-orange transition" data-i18n="navServices">Services</a>
+                <a href="#projects" class="hover:text-brand-orange transition" data-i18n="navProjects">Projects</a>
+                <a href="#vendors" class="hover:text-brand-orange transition" data-i18n="navVendors">Vendor Codes</a>
             </div>
         </div>
     </footer>
 
-    <!-- AOS Script -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Logic -->
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // Number Counter Animation
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-target'));
-                    animateValue(entry.target, 0, target, 2000);
-                    observer.unobserve(entry.target);
-                }
-            });
+        // Scroll Handling for Nav
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
         });
 
-        document.querySelectorAll('.count-up').forEach((el) => observer.observe(el));
-
-        const data = {
-            en: {
-                brandName: "SAUDI BOILERS", brandNameHTML: "SAUDI<br><span class='text-brand-red'>BOILERS</span>", maintenanceCo: "MAINTENANCE CO.",
-                navOverview: "HOME", navServices: "SERVICES", navCapabilities: "CAPABILITIES", navProjects: "TRACK RECORD", navClients: "CLIENTS", btnContact: "CONTACT", navSpecialized: "SPECIALIZED",
-                navProducts: "PRODUCTS",
-                profileYear: "YEAR 2025 PROFILE",
-                heroTitle: "OPTIMIZED SOLUTIONS<br>FOR INDUSTRIAL BOILERS",
-                heroDesc: "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disasters, shut-down, testing, or planned downtime.",
-                btnVendor: "VENDOR CODES", btnProducts: "OUR PRODUCTS",
-                preQual: "TRUSTED PARTNERS", sectionVendor: "OFFICIAL VENDOR CODES",
-                sectionServices: "OUR EXPERTISE", servicesMainTitle: "ENGINEERING &<br>INDUSTRIAL SERVICES", 
-                servicesIntro: "Saudi Boilers offers Industrial sector clients unique and optimum solutions to maintain equipment's high performance quality and safety levels. We offer services from boiler surveys, inspections, repairs, and revamp, as well as the design, supply, installation, and commissioning of complete boiler systems.",
-                servicesDetail: "Boilers and auxiliaries are designed, manufactured, installed, and maintained to national and international standards such as ASME BPVC Section I, VIII, VI, BS, European and others. Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam/hot water power plant systems, fuel piping, and pressure vessels.",
-                cardDesignTitle: "DESIGN", cardDesignDesc: "ASME compliant engineering and reverse engineering.",
-                cardFabTitle: "FABRICATION", cardFabDesc: "Pressure vessels, tanks, and skid mounted systems.",
-                cardMaintTitle: "MAINTENANCE", cardMaintDesc: "Annual contracts, repairs, and emergency support.",
-                cardAnalysisTitle: "ANALYSIS", cardAnalysisDesc: "Root cause failure analysis and efficiency studies.",
-                sectionSpecialized: "ADVANCED TECHNICAL SOLUTIONS",
-                specRcaTitle: "Root Cause Analysis", specRcaDesc: "Using influence diagram analysis to decide and determine relative contribution of various root cause influences in operating boilers to prevent recurrence.",
-                specInspTitle: "Expert Inspection", specInspDesc: "Proper inspection techniques for all types of boiler components to ensure accurate diagnostics of any failure mode for proper remedies and rehabilitation.",
-                specCircTitle: "Circulation Analysis", specCircDesc: "The only team in KSA assessing internal circulation to solve tube overheating. Mitigates reoccurrence of furnace tube failures.",
-                specShutdownTitle: "Shutdown Management", specShutdownDesc: "Detailed service programs for pressure, auxiliary, and control components to prolong boiler operational life with all safety measures.",
-                specFuelTitle: "Fuel Switch Studies", specFuelDesc: "Technical and feasibility studies for switching fuels to meet environmental and economic constraints (e.g., Liquid to Gas).",
-                specFlueTitle: "Flue Gas Analysis", specFlueDesc: "On-site exhaust gas emission measurements using calibrated, standard, and certified equipment whenever needed.",
-                sectionClients: "OUR VALUED CLIENTS", sectionProjects: "RECENT PROJECTS",
-                contactAddr: "Abdullah St. & Prince Humood St., Al Khobar, KSA",
-                footerRights: "&copy; 2025 All Rights Reserved.",
-                statExp: "Years Experience", statLocal: "Saudi Owned", statSupport: "Emergency Support", statCode: "Code Compliant",
-                // Vision Mission
-                visionTitle: "OUR VISION", visionDesc: "To innovate and lead in energy solutions across the Middle East, ensuring sustainability, efficiency, and reliability for all clients.",
-                missionTitle: "OUR MISSION", missionDesc: "Providing optimized solutions by combining superior industrial expertise with expert resources to transform the region's energy requirements.",
-                // Rental to Products
-                navRental: "RENTAL",
-                sectionProductsSub: "ADVANCED SOLUTIONS", sectionProducts: "INDUSTRIAL BOILER SYSTEMS",
-                prodFireTitle: "FIRETUBE BOILERS", prodFireDesc: "Robust steam and hot water generation for industrial process applications. Designed for reliability and ease of maintenance.",
-                prodWaterTitle: "WATERTUBE BOILERS", prodWaterDesc: "High-capacity, high-pressure solutions for power generation, petrochemical, and large-scale utility applications.",
-                prodElecTitle: "ELECTRIC BOILERS", prodElecDesc: "Compact, clean, and efficient steam generation for specialized environments requiring zero footprint emissions.",
-                // Strategic Rental Removed, Product focus
-                
-                sectionTeam: "UNMATCHED EXPERTISE", navTeam: "OUR TEAM",
-                teamDesc1: "Saudi Boiler team is unique among engineering and industrial services providers. The team is the only team in the Middle East that specializes solely in process equipment engineering services.",
-                teamDesc2: "Proven expertise in thermal design of heat transfer equipment including utility, industrial and packaged boilers, air-cooled, shell & tube, plate & frame, brazed aluminum type heat exchangers, and process fired heaters.",
-                teamEngTitle: "LICENSED ENGINEERING DEPARTMENT",
-                teamEngDesc: "Our Engineering Department has over 30 years of experience in designing, reverse engineering, and evaluating many types of boilers, steam and hot water power plant systems, fuel piping, and pressure vessels to ASME standards.",
-                teamObjectives: "CORE OBJECTIVES",
-                sectionCapabilities: "TECHNICAL STRENGTH", navCapabilities: "CAPABILITIES"
-            },
-            ar: {
-                brandName: "المراجل السعودية", brandNameHTML: "المراجل<br><span class='text-brand-red'>السعودية</span>", maintenanceCo: "شركة الصيانة",
-                navOverview: "الرئيسية", navServices: "الخدمات", navCapabilities: "القدرات", navProjects: "المشاريع", navClients: "العملاء", navSpecialized: "متخصصة", btnContact: "اتصل بنا",
-                navProducts: "المنتجات",
-                profileYear: "ملف الشركة ٢٠٢٥",
-                heroTitle: "حلول هندسية متكاملة<br>للمراجل الصناعية",
-                heroDesc: "أينما ومتى احتجت إلى مرجل بخاري، يمكن للمراجل السعودية التوصيل بسرعة. سواء كان لدى العميل حالة طوارئ، كوارث، توقف عن العمل، أو صيانة.",
-                btnVendor: "أكواد الموردين", btnProducts: "منتجاتنا",
-                preQual: "شركاء موثوقون", sectionVendor: "أكواد التسجيل المعتمدة",
-                sectionServices: "خبراتنا", servicesMainTitle: "الخدمات الهندسية<br>والصناعية", 
-                servicesIntro: "تقدم المراجل السعودية لعملاء القطاع الصناعي حلولاً فريدة ومثلى للحفاظ على مستويات الأداء العالي والجودة والسلامة للمعدات.",
-                servicesDetail: "يتم تصميم وتصنيع وتركيب وصيانة المراجل وملحقاتها وفقًا للمعايير الوطنية والدولية. يتمتع قسم الهندسة لدينا بأكثر من 30 عامًا من الخبرة في التصميم والهندسة العكسية.",
-                cardDesignTitle: "التصميم", cardDesignDesc: "هندسة متوافقة مع ASME والهندسة العكسية.",
-                cardFabTitle: "التصنيع", cardFabDesc: "أوعية الضغط، الخزانات، والأنظمة المثبتة على قواعد.",
-                cardMaintTitle: "الصيانة", cardMaintDesc: "عقود سنوية، إصلاحات، ودعم طوارئ.",
-                cardAnalysisTitle: "التحليل", cardAnalysisDesc: "تحليل السبب الجذري للأعطال ودراسات الكفاءة.",
-                sectionSpecialized: "الحلول التقنية المتقدمة",
-                specRcaTitle: "تحليل السبب الجذري", specRcaDesc: "استخدام تحليل مخطط التأثير لتحديد أسباب الأعطال ومنع تكرارها في المراجل العاملة.",
-                specInspTitle: "التفتيش المتخصص", specInspDesc: "تقنيات تفتيش دقيقة لجميع المكونات لضمان التشخيص الصحيح والعلاجات المناسبة.",
-                specCircTitle: "تحليل الدوران", specCircDesc: "الفريق الوحيد في المملكة لتقييم الدوران الداخلي وحل مشاكل ارتفاع حرارة الأنابيب.",
-                specShutdownTitle: "إدارة التوقف", specShutdownDesc: "برامج خدمة مفصلة لمكونات الضغط والتحكم لإطالة عمر المرجل التشغيلي بأمان.",
-                specFuelTitle: "تحويل الوقود", specFuelDesc: "دراسات فنية وجدوى لتحويل الوقود لتلبية القيود البيئية والاقتصادية.",
-                specFlueTitle: "تحليل الغازات", specFlueDesc: "قياسات انبعاثات غازات العادم في الموقع باستخدام معدات معتمدة ومعايرة.",
-                sectionClients: "عملاؤنا", sectionProjects: "أحدث المشاريع",
-                contactAddr: "شارع عبد الله وشارع الأمير حمود، الخبر، السعودية",
-                footerRights: "&copy; ٢٠٢٥ جميع الحقوق محفوظة.",
-                statExp: "سنوات الخبرة", statLocal: "ملكية سعودية", statSupport: "دعم الطوارئ", statCode: "مطابقة للكود",
-                // Vision Mission
-                visionTitle: "رؤيتنا", visionDesc: "الابتكار والريادة في حلول الطاقة عبر الشرق الأوسط، وضمان الاستدامة والكفاءة والموثوقية لجميع العملاء.",
-                missionTitle: "مهمتنا", missionDesc: "تقديم حلول مثلى من خلال الجمع بين الخبرة الصناعية المتفوقة والموارد الخبيرة لتحويل متطلبات الطاقة في المنطقة.",
-                // Rental to Products
-                navRental: "التأجير",
-                sectionProductsSub: "حلول متقدمة", sectionProducts: "أنظمة المراجل الصناعية",
-                prodFireTitle: "مراجل أنابيب اللهب", prodFireDesc: "توليد قوي للبخار والمياه الساخنة للتطبيقات الصناعية. مصممة للموثوقية وسهولة الصيانة.",
-                prodWaterTitle: "مراجل أنابيب المياه", prodWaterDesc: "حلول عالية السعة والضغط لتوليد الطاقة والبتروكيماويات والمرافق الكبيرة.",
-                prodElecTitle: "المراجل الكهربائية", prodElecDesc: "توليد بخار نظيف وفعال للبيئات المتخصصة التي تتطلب انعدام الانبعاثات.",
-                // Strategic Rental Removed
-                sectionTeam: "خبرات لا تضاهى", navTeam: "فريقنا",
-                teamDesc1: "فريق المراجل السعودية فريد من نوعه بين مقدمي الخدمات الهندسية والصناعية. الفريق هو الوحيد في الشرق الأوسط المتخصص فقط في خدمات هندسة معدات العمليات.",
-                teamDesc2: "خبرة مثبتة في التصميم الحراري لمعدات نقل الحرارة بما في ذلك مراجل المرافق والمراجل الصناعية، المبادلات الحرارية المبردة بالهواء، الأنبوبية، والألواح، وسخانات العمليات.",
-                teamEngTitle: "قسم الهندسة الداخلي",
-                teamEngDesc: "يتمتع قسم الهندسة لدينا بأكثر من ٣٠ عامًا من الخبرة في تصميم وهندسة عكسية وتقييم العديد من أنواع الغلايات وأنظمة محطات الطاقة البخارية والمياه الساخنة وأنابيب الوقود وفقًا لمعايير ASME.",
-                teamObjectives: "الأهداف الرئيسية",
-                sectionCapabilities: "القوة التقنية", navCapabilities: "القدرات"
-            }
-        };
-
-        const vendors = [
-            { code: "10051317", nameEn: "SAUDI ARAMCO", nameAr: "أرامكو السعودية", color: "blue-900" },
-            { code: "2005480", nameEn: "SEC (ELECTRICITY)", nameAr: "الشركة السعودية للكهرباء", color: "green-600" },
-            { code: "RCJ000442", nameEn: "ROYAL COMMISSION", nameAr: "الهيئة الملكية", color: "orange-500" },
-            { code: "7975046", nameEn: "SWCC (WATER)", nameAr: "التحلية", color: "blue-400" },
-            { code: "38800", nameEn: "MA'ADEN GOLD", nameAr: "معادن للذهب", color: "yellow-600" },
-            { code: "S11435394", nameEn: "SATORP", nameAr: "ساتورب", color: "purple-600" }
-        ];
-
-        const projects = [
-            { year: "2023-2024", titleEn: "Supply & commissioning of 2.5 t/h steam boiler", titleAr: "توريد وتشغيل مرجل بخاري 2.5 طن", clientEn: "Estedama Abqaiq", clientAr: "استدامة - بقيق" },
-            { year: "2023", titleEn: "Supply & installation of 20 t/h steam boiler", titleAr: "توريد وتركيب مرجل بخاري 20 طن", clientEn: "Saudi Paper Mfg. Co.", clientAr: "الورق السعودية" },
-            { year: "Ongoing", titleEn: "Replacement of 50 tph super-heater tubes", titleAr: "استبدال أنابيب المحمص 50 طن", clientEn: "MEPCO Jeddah", clientAr: "ميبكو جدة" },
-            { year: "2022", titleEn: "4x Hot water boilers (2510 KW)", titleAr: "4 مراجل مياه ساخنة 2510 كيلو واط", clientEn: "King Abdul Aziz Military City", clientAr: "مدينة الملك عبدالعزيز العسكرية" },
-            { year: "2022", titleEn: "Supply 5 t/h skid steam boiler", titleAr: "توريد مرجل بخاري متنقل 5 طن", clientEn: "ABIS Dammam", clientAr: "أبيس الدمام" },
-            { year: "2021", titleEn: "Supply 250 kg/h steam boiler", titleAr: "توريد مرجل بخاري 250 كجم", clientEn: "Saudi Aramco", clientAr: "أرامكو السعودية" },
-            { year: "2020", titleEn: "Feasibility Study of fuel change (8 boilers)", titleAr: "دراسة جدوى تغيير الوقود (8 مراجل)", clientEn: "Savola Company", clientAr: "صافولا" },
-            { year: "2017", titleEn: "Supply 3 t/h steam boiler", titleAr: "توريد مرجل بخاري 3 طن", clientEn: "Nozoly Jeddah", clientAr: "نزلي جدة" }
+        // Data Objects
+        const vendorCodes = [
+            { name: "SAUDI ARAMCO", code: "10051317" },
+            { name: "SEC (ELECTRICITY)", code: "2005480" },
+            { name: "ROYAL COMMISSION (RCJ)", code: "RCJ000442" },
+            { name: "SWCC (WATER)", code: "7975046" },
+            { name: "MA'ADEN GOLD", code: "38800" },
+            { name: "SATORP", code: "S11435394" }
         ];
 
         const capabilities = [
-            { en: "Field survey and production of As-Built drawings", ar: "المسح الميداني وإنتاج المخططات الواقعية" },
-            { en: "Analysis and design of replacement equipment", ar: "تحليل وتصميم معدات الاستبدال" },
-            { en: "Evaluate existing systems to increase capacity", ar: "تقييم الأنظمة الحالية لزيادة السعة" },
-            { en: "Analyze performance issues & diagnose problems", ar: "تحليل مشاكل الأداء وتشخيص الأعطال" },
-            { en: "Design and upgrade boiler controls and BMS", ar: "تصميم وتحديث أنظمة التحكم في المراجل" },
-            { en: "Improve and control NOx emissions", ar: "تحسين والتحكم في انبعاثات النيتروجين" },
-            { en: "Design of Fuel system Retrofits", ar: "تصميم تحديثات أنظمة الوقود" },
-            { en: "Fitness for Service Analysis", ar: "تحليل الصلاحية للخدمة" },
-            { en: "Complete steam & hot water Projects", ar: "مشاريع البخار والمياه الساخنة المتكاملة" },
-            { en: "Boiler Failure and Remaining Life Analysis", ar: "تحليل فشل المراجل والعمر المتبقي" },
-            { en: "Boiler Plant Feasibility Studies", ar: "دراسات جدوى محطات المراجل" },
-            { en: "Monitoring and Diagnostics", ar: "المراقبة والتشخيص" },
-            { en: "Design and or retrofit of Economizer system", ar: "تصميم أو تحديث نظام الموفر" },
-            { en: "Feed water & fuel Tank supply Installation", ar: "توريـد وتركيب خزانات مياه التغذية والوقود" },
-            { en: "Steam piping auxiliary supply", ar: "توريـد ملحقات أنابيب البخار" },
-            { en: "Boiler Condition Assessment", ar: "تقييم حالة المرجل" },
-            { en: "Insulation & Refractory Evaluation", ar: "تقييم العزل والحراريات" },
-            { en: "Energy Optimization & Performance", ar: "تحسين الطاقة والأداء" }
+            "Field survey and production of As-Built drawings",
+            "Analysis and design of replacement equipment",
+            "Evaluate existing systems (Capacity/Efficiency)",
+            "Analyze performance issues & diagnose problems",
+            "Design and upgrade boiler controls and BMS",
+            "System troubleshooting and issue analysis",
+            "Improve and control NOx emissions",
+            "Design of Fuel system Retrofits",
+            "Fitness for Service Analysis",
+            "Monitoring and Diagnostics",
+            "Design and or retrofit of Economizer system",
+            "Design alternative fuel systems",
+            "Feed water & fuel Tank supply Installation",
+            "Boiler Design and Manufacturing",
+            "Complete steam & hot water Projects",
+            "Boiler Failure and Remaining Life Analysis",
+            "Steam piping auxiliary supply",
+            "Boiler Plant Feasibility Studies",
+            "Boiler Condition Assessment",
+            "Insulation & Refractory Evaluation",
+            "Energy Optimization & Performance",
+            "Steam Piping Design",
+            "Deaerator tanks",
+            "Burner supply",
+            "Boiler layout"
         ];
 
-        const objectives = [
-            { en: "Protect operations and maintenance investments", ar: "حماية استثمارات التشغيل والصيانة" },
-            { en: "Ensure contractors and suppliers meet their commitments", ar: "ضمان وفاء المقاولين والموردين بالتزاماتهم" },
-            { en: "Spread Engineering Concept in Industrial community in KSA", ar: "نشر المفهوم الهندسي في المجتمع الصناعي في المملكة" },
-            { en: "Improve regional market competitiveness of Saudi Arabian Engineering Disciplines", ar: "تحسين التنافسية الإقليمية للتخصصات الهندسية السعودية" },
-            { en: "Enhance local engineers' competencies", ar: "تعزيز كفاءات المهندسين المحليين" }
+        const projects = [
+            { year: "2023-2024", scope: "Supply & commissioning of 2.5 t/h steam boiler & accessories", client: "Estedama Abqaiq" },
+            { year: "2023-2024", scope: "Supply & commissioning of 3 t/h steam boiler & accessories", client: "FEEDCO Jeddah" },
+            { year: "2023", scope: "Supply, installation & commissioning of 20 t/h steam boiler", client: "Saudi Paper Mfg. Co., Dammam" },
+            { year: "2023", scope: "Supply, installation & commissioning of 2.8 t/h steam boiler", client: "Saudi Belt Factory, Dammam" },
+            { year: "2023", scope: "Supply & commissioning of 300 kg/h steam boiler", client: "Estedama Factory Abqaiq" },
+            { year: "2023", scope: "Supply, installation & commissioning of 5 t/h steam boiler", client: "Noor Cartoon Factory, Dammam" },
+            { year: "Ongoing", scope: "Replacement of 50 tph water tube Boiler's super-heater tubes", client: "MEPCO, Jeddah" },
+            { year: "2022", scope: "Supply & commissioning of 4 hot water boilers (2510 KW)", client: "King Abdul Aziz Military City - Tabuk" },
+            { year: "2022", scope: "Supply & Commissioning of two 1645 KW Hot water boilers", client: "ISTP Plant Dammam" },
+            { year: "2022", scope: "Supply, installation & commissioning of 5 t/h steam boiler", client: "Prainsa Precast Factory, Dammam" },
+            { year: "2022", scope: "Supply, installation & commissioning of 2 t/h steam boiler", client: "Prainsa Precast Factory, Jeddah" },
+            { year: "2022", scope: "Supply, installation & commissioning of 5 t/h skid steam boiler", client: "ABIS, Dammam" },
+            { year: "2021", scope: "Supply & commissioning of 250 kg/h steam boiler", client: "Saudi Aramco" },
+            { year: "2020", scope: "Feasibility Study of fuel change for 8 boilers", client: "Savola Company" },
+            { year: "2020", scope: "Supply & Commissioning of low-pressure 2 t/h steam boiler", client: "Tammimi Industry, Dammam" }
         ];
 
         const clients = [
-            {en: "SAUDI ARAMCO", ar: "أرامكو السعودية"},
-            {en: "SABIC", ar: "سابك"},
-            {en: "SEC", ar: "الكهرباء السعودية"},
-            {en: "SWCC", ar: "التحلية"},
-            {en: "MA'ADEN", ar: "معادن"},
-            {en: "TASNEE", ar: "التصنيع"},
-            {en: "LUBEREF", ar: "لوبريف"},
-            {en: "SATORP", ar: "ساتورب"},
-            {en: "MEPCO", ar: "ميبكو"},
-            {en: "AL-RASHED", ar: "الراشد"},
-            {en: "RIYADH METRO", ar: "قطار الرياض"}
+            "TASNEE", "LUBEREF", "ESTEDAMA", "SAUDI ARAMCO", "MEPCO", "MAADEN", "AL-RASHED STEEL", "SSP", 
+            "FEEDCO", "AL KIFAH PAPER", "NOZOLY", "RIYADH METRO", "GULF BUILDER", "NATPET", "FAST", 
+            "TSM ARABIA", "GSP", "BELL HELMETS", "HENKEL", "DELMON", "ACCIONA", "TAWZEA", "REXAM", "SATORP"
         ];
 
-        let currentLang = 'en';
+        const partners = [
+            "PETROSAL", "SALAMAH CONSULTING", "IMDAD STEEL", "EPC BOILER", "CANNON BONO ENERGIA", 
+            "POWERSPEX", "I.VAR INDUSTRY", "FIVES", "MARTECH BOILER", "PPIC", "AKKAYA BOILERS", "MADAS"
+        ];
 
-        function renderContent(lang) {
+        // Render Functions
+        function renderContent() {
             // Vendors
-            document.getElementById('vendor-grid').innerHTML = vendors.map(v => `
-                <div class="bg-white p-6 rounded-xl shadow-soft border-l-4 border-${v.color} hover:shadow-lg transition cursor-default">
-                    <div class="flex justify-between mb-2">
-                        <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">${lang === 'en' ? v.nameEn : v.nameAr}</span>
-                    </div>
-                    <p class="text-3xl font-header font-bold text-brand-dark font-mono">${v.code}</p>
-                </div>
-            `).join('');
-
-            // Objectives
-            document.getElementById('objectives-list').innerHTML = objectives.map(o => `
-                <li class="flex items-start gap-4">
-                    <div class="mt-1 min-w-[20px] text-brand-red"><i class="fa-solid fa-check"></i></div>
-                    <span class="text-gray-300 text-sm font-bold">${lang === 'en' ? o.en : o.ar}</span>
-                </li>
-            `).join('');
-
-            // Projects
-            document.getElementById('projects-grid').innerHTML = projects.map(p => `
-                <div class="bg-white p-6 rounded-xl shadow-soft hover:-translate-y-1 transition duration-300 border border-gray-100">
-                    <span class="text-brand-red text-xs font-bold bg-red-50 px-2 py-1 rounded">${p.year}</span>
-                    <h4 class="text-lg font-bold text-brand-dark mt-3 mb-2">${lang === 'en' ? p.titleEn : p.titleAr}</h4>
-                    <p class="text-sm text-gray-500 font-bold">${lang === 'en' ? p.clientEn : p.clientAr}</p>
+            document.getElementById('vendor-grid').innerHTML = vendorCodes.map(v => `
+                <div class="bg-white/10 border border-white/20 p-4 rounded-sm hover:bg-white/20 transition">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-wider mb-1">${v.name}</div>
+                    <div class="text-lg font-mono font-bold text-brand-orange">${v.code}</div>
                 </div>
             `).join('');
 
             // Capabilities
-            document.getElementById('capabilities-list').innerHTML = capabilities.map(c => `
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-1.5 bg-brand-red rounded-full"></div>
-                    <span>${lang === 'en' ? c.en : c.ar}</span>
+            document.getElementById('capabilities-grid').innerHTML = capabilities.map(c => `
+                <div class="tech-item hover:bg-brand-navy group transition cursor-default">
+                    <i class="fa-solid fa-angle-right text-brand-orange mt-1"></i>
+                    <span class="text-sm font-medium text-gray-700 group-hover:text-white">${c}</span>
                 </div>
             `).join('');
 
-            // Marquee Clients
-            const marqueeContent = clients.map(c => `
-                <span class="mx-8 text-xl font-header font-bold text-gray-300 hover:text-brand-red transition cursor-default whitespace-nowrap">${lang === 'en' ? c.en : c.ar}</span>
+            // Projects
+            document.getElementById('project-list').innerHTML = projects.map(p => `
+                <tr>
+                    <td><span class="bg-brand-light text-brand-navy px-2 py-1 rounded text-xs font-bold">${p.year}</span></td>
+                    <td class="font-medium">${p.scope}</td>
+                    <td>${p.client}</td>
+                </tr>
             `).join('');
-            document.getElementById('client-marquee').innerHTML = marqueeContent + marqueeContent + marqueeContent;
+
+            // Clients
+            document.getElementById('clients-list').innerHTML = clients.map(c => `
+                <div class="bg-brand-light px-4 py-3 rounded-sm text-xs font-bold text-brand-navy border border-brand-border hover:bg-brand-navy hover:text-white transition cursor-default">
+                    ${c}
+                </div>
+            `).join('');
+
+            // Partners
+            document.getElementById('partners-list').innerHTML = partners.map(p => `
+                <div class="bg-white px-4 py-3 rounded-sm text-xs font-bold text-gray-600 border border-brand-border hover:border-brand-orange transition cursor-default">
+                    ${p}
+                </div>
+            `).join('');
         }
+
+        // Language Toggle (Basic Implementation)
+        const data = {
+            en: {
+                brandName: "SAUDI BOILERS",
+                navGeneral: "GENERAL INFO", navVendors: "VENDORS", navServices: "SERVICES", navCapabilities: "CAPABILITIES", 
+                navProjects: "PROJECTS", navTeam: "TEAM", navSpecialized: "SPECIALIZED", btnContact: "CONTACT US", btnServices: "OUR SERVICES",
+                estBadge: "Established 2012 | Kingdom of Saudi Arabia",
+                heroDesc: "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disaster, shut-down, testing, or planned downtime, we have the solution.",
+                sectionGeneral: "GENERAL INFORMATION", aboutTitle: "BOILER SPECIALIST<br>COMPANY",
+                genInfo1: "SAUDI BOILERS is a Boiler Specialist Company providing expert boiler services for all types of boilers and conducting preventive maintenance for all types of boilers in all industrial sectors.",
+                genInfo2: "SAUDI BOILERS provides Optimized Solutions to end users through its unique blend of industrial expertise and use of expert resources.",
+                genInfo3: "We have a team of engineers, expert technicians, and professionals inspired to work at their best along with associate companies & partners globally who are experts in their respective domains.",
+                visMisTitle: "VISION & MISSION",
+                vendorTitle: "OFFICIAL VENDOR CODES",
+                sectionEng: "EXPERTISE", engTitle: "ENGINEERING &<br>INDUSTRIAL SERVICES"
+            },
+            ar: {
+                brandName: "المراجل السعودية",
+                navGeneral: "معلومات عامة", navVendors: "الموردين", navServices: "الخدمات", navCapabilities: "القدرات", 
+                navProjects: "المشاريع", navTeam: "الفريق", navSpecialized: "خدمات متخصصة", btnContact: "اتصل بنا", btnServices: "خدماتنا",
+                estBadge: "تأسست عام 2012 | المملكة العربية السعودية",
+                heroDesc: "أينما ومتى دعت الحاجة إلى مرجل، يمكن للمراجل السعودية التوصيل بسرعة. سواء كان لدى العميل حالة طوارئ، أو كارثة، أو إيقاف تشغيل، أو اختبار، أو توقف مخطط له، فلدينا الحل.",
+                sectionGeneral: "معلومات عامة", aboutTitle: "شركة متخصصة<br>في المراجل",
+                genInfo1: "المراجل السعودية هي شركة متخصصة في المراجل تقدم خدمات خبراء لجميع أنواع المراجل وتجري صيانة وقائية لجميع أنواع المراجل في جميع القطاعات الصناعية.",
+                genInfo2: "تقدم المراجل السعودية حلولاً محسنة للمستخدمين النهائيين من خلال مزيجها الفريد من الخبرة الصناعية واستخدام الموارد الخبيرة.",
+                genInfo3: "لدينا فريق من المهندسين والفنيين الخبراء والمهنيين الملهمين للعمل بأفضل ما لديهم جنبًا إلى جنب مع الشركات الزميلة والشركاء عالميًا الذين هم خبراء في مجالاتهم.",
+                visMisTitle: "الرؤية والرسالة",
+                vendorTitle: "أكواد الموردين الرسمية",
+                sectionEng: "الخبرات", engTitle: "الخدمات الهندسية<br>والصناعية"
+            }
+        };
+
+        let currentLang = 'en';
 
         function setLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             
+            // Text Replacement
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (data[lang][key]) el.innerHTML = data[lang][key];
             });
-            renderContent(lang);
-            
-            // Button State
+
+            // Toggle Button Text
             const btn = document.getElementById('langToggle');
             const mobileBtn = document.getElementById('langToggleMobile');
             
@@ -861,9 +714,7 @@
         document.getElementById('langToggleMobile').addEventListener('click', () => setLanguage(currentLang === 'en' ? 'ar' : 'en'));
 
         // Init
-        setLanguage('en');
-        renderContent('en');
-        AOS.init();
+        renderContent();
     </script>
 </body>
 </html>
