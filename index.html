@@ -36,6 +36,7 @@
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'spin-slow': 'spin 3s linear infinite',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -50,6 +51,9 @@
     <style>
         /* Corporate Profile Styles */
         body { font-family: 'Inter', sans-serif; background-color: #FFFFFF; color: #334155; line-height: 1.6; overflow-x: hidden; }
+        
+        /* Alignment Utility for Multi-language */
+        .text-start { text-align: start; }
         
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -266,7 +270,8 @@
 
         <div class="hero-content px-6">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-8 text-center lg:text-left" data-aos="fade-up" data-aos-duration="1000">
+                <!-- Updated Alignment: lg:text-start ensures Right Alignment in Arabic (RTL) and Left in English (LTR) -->
+                <div class="lg:col-span-8 text-center lg:text-start" data-aos="fade-up" data-aos-duration="1000">
                     <div class="inline-block bg-brand-orange text-white text-[10px] font-bold tracking-[0.2em] px-4 py-1.5 mb-8 uppercase rounded-full shadow-lg transform hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
                         <span data-i18n="estBadge">Established 2012 | Kingdom of Saudi Arabia</span>
                     </div>
@@ -698,6 +703,7 @@
                 estBadge: "Established 2012 | Kingdom of Saudi Arabia",
                 heroTitle1: "OPTIMIZED SOLUTIONS", heroTitle2: "FOR INDUSTRIAL BOILERS",
                 heroDesc: "Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disaster, shut-down, testing, or planned downtime, we have the solution.",
+                btnProfile: "DOWNLOAD PROFILE",
                 sectionGeneral: "GENERAL INFORMATION", aboutTitle: "BOILER SPECIALIST<br>COMPANY",
                 genInfo1: "SAUDI BOILERS is a Boiler Specialist Company providing expert boiler services for all types of boilers and conducting preventive maintenance for all types of boilers in all industrial sectors.",
                 genInfo2: "SAUDI BOILERS provides Optimized Solutions to end users through its unique blend of industrial expertise and use of expert resources.",
@@ -740,6 +746,7 @@
                 estBadge: "تأسست عام 2012 | المملكة العربية السعودية",
                 heroTitle1: "حلول مثالية", heroTitle2: "للمراجل الصناعية",
                 heroDesc: "أينما ومتى دعت الحاجة إلى مرجل، يمكن للمراجل السعودية التوصيل بسرعة. سواء كان لدى العميل حالة طوارئ، أو كارثة، أو إيقاف تشغيل، أو اختبار، أو توقف مخطط له، فلدينا الحل.",
+                btnProfile: "تحميل الملف",
                 sectionGeneral: "معلومات عامة", aboutTitle: "شركة متخصصة<br>في المراجل",
                 genInfo1: "المراجل السعودية هي شركة متخصصة في المراجل تقدم خدمات خبراء لجميع أنواع المراجل وتجري صيانة وقائية لجميع أنواع المراجل في جميع القطاعات الصناعية.",
                 genInfo2: "تقدم المراجل السعودية حلولاً محسنة للمستخدمين النهائيين من خلال مزيجها الفريد من الخبرة الصناعية واستخدام الموارد الخبيرة.",
