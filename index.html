@@ -86,22 +86,38 @@
             background-color: #0F172A; /* Fallback color */
         }
 
-        /* Video Background */
-        .hero-video-container {
+        /* Advanced Image Background with Ken Burns Effect */
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-size: cover;
+            background-position: center;
             z-index: 0;
+            animation: kenBurns 20s ease-in-out infinite alternate;
         }
-        
-        .hero-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.35) contrast(1.1); /* Darken video for text readability */
-            transform: scale(1.05); /* Slight zoom to avoid edges */
+
+        @keyframes kenBurns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+
+        /* Professional Gradient Overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            /* Dark Navy Gradient from Left to Right */
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 50%, rgba(15, 23, 42, 0.2) 100%);
+            z-index: 1;
+        }
+
+        /* Mobile specific overlay adjustment */
+        @media (max-width: 768px) {
+            .hero-overlay {
+                background: linear-gradient(to bottom, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+            }
         }
 
         .hero-content {
@@ -260,19 +276,18 @@
 
     <!-- 1. HERO SECTION -->
     <section id="home" class="hero-section">
-        <!-- Video Background -->
-        <div class="hero-video-container">
-            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1565439368560-6e469d76e271?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
-                <!-- Industrial Boiler / Factory Video -->
-                <source src="https://v4.cdnpk.net/videvo_files/video/free/2019-11/large_watermarked/190301_1_25_11_preview.mp4" type="video/mp4">
-            </video>
-        </div>
+        <!-- Advanced Image Background -->
+        <!-- Using high-res thumbnail endpoint for the Drive file -->
+        <div class="hero-bg" style="background-image: url('https://drive.google.com/thumbnail?id=1_0FLi-qHiQGf94fE99rxfoLEBEwgt01s&sz=w2560');"></div>
+        
+        <!-- Gradient Overlay -->
+        <div class="hero-overlay"></div>
 
         <div class="hero-content px-6">
             <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Updated Alignment: lg:text-start ensures Right Alignment in Arabic (RTL) and Left in English (LTR) -->
                 <div class="lg:col-span-8 text-center lg:text-start" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="inline-block bg-brand-orange text-white text-[10px] font-bold tracking-[0.2em] px-4 py-1.5 mb-8 uppercase rounded-full shadow-lg transform hover:scale-105 transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="inline-block bg-brand-orange text-white text-[10px] font-bold tracking-[0.2em] px-4 py-1.5 mb-8 uppercase rounded-full shadow-lg transform hover:scale-105 transition duration-300 backdrop-blur-sm border border-white/20" data-aos="zoom-in" data-aos-delay="200">
                         <span data-i18n="estBadge">Established 2012 | Kingdom of Saudi Arabia</span>
                     </div>
                     
@@ -281,7 +296,7 @@
                         <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-orange-400" data-i18n="heroTitle2" data-aos="fade-up" data-aos-delay="500">FOR INDUSTRIAL BOILERS</span>
                     </h1>
                     
-                    <p class="text-lg text-gray-200 max-w-2xl mb-12 font-light leading-relaxed lg:border-l-4 lg:border-white/30 lg:pl-6 mx-auto lg:mx-0" data-i18n="heroDesc" data-aos="fade-up" data-aos-delay="700">
+                    <p class="text-lg text-gray-200 max-w-2xl mb-12 font-light leading-relaxed lg:border-l-4 lg:border-white/30 lg:pl-6 mx-auto lg:mx-0 drop-shadow-md" data-i18n="heroDesc" data-aos="fade-up" data-aos-delay="700">
                         Wherever and whenever a boiler is required, Saudi Boilers can quickly deliver. Whether a customer has an emergency, disaster, shut-down, testing, or planned downtime, we have the solution.
                     </p>
                     
